@@ -25,9 +25,11 @@
 
     // new Pipe
     const newMultiplePipe = multiplePipe(add20, double, add100);
+    console.log("by using array.reduce, Pipe : " + newMultiplePipe(100));
 
     // new Compose
     const newMulitpleCompose = multipleCompose(add100, double, add20);
+    console.log("by using array.reduce, Compose :" + newMulitpleCompose(100));
 
 
     // by using own reduce funtion reduce(array,accumulator function, initial value)
@@ -35,22 +37,46 @@
     // own reduce function
     const reduce = (array, fn, initialValue) => {
         let accumlator;
-        if (initialValue != undefined)
+        if (initialValue != undefined) {
             accumlator = initialValue;
-        else
+        } else {
             accumlator = array[0];
-        if (initialValue === undefined)
-            for (let i = 1; i < array.length; i++)
+        }
+
+        if (initialValue === undefined) {
+            for (let i = 1; i < array.length; i++) {
                 accumlator = fn(accumlator, array[i])
-        else
-            for (const value of array)
-                accumlator = fn(accumlator, value)
-        return [accumlator]
+            }
+        } else {
+            // for (const value of array) {
+            for (let i = 0; i < array.length; i++) {
+                accumlator = fn(accumlator, array[i])
+            }
+        }
+        return accumlator;
     }
 
-    // using own reduce function const composeMany=(...fns)=>
-    (value) =>
-        reduce(fns.reverse(), (acc, fn) => fn(acc), value);
+    // testing reduce function 
+    let numlist = [10, 20, 30];
+    console.log("Testing reduce , Total : " + reduce(numlist, (a, b) => a + b));
+
+    
+    // using own reduce function 
+    const composeMany = (...fns) => {
+        return function (x) {
+            reduce(fns.reverse(), (x, fn) => fn(x), x);
+        }
+    }
+    const testComposeMany = composeMany(add20, double, add100);
+    console.log("Compose Many : " + testComposeMany(100));
+
+    const pipeMany = (...fns) => {
+        return function (x) {
+            reduce(fns, (x, fn) => fn(x), x);
+        }
+    }
+    const testPipeMany = pipeMany(add100, double, add20);
+    console.log("Pipe Many : " + testPipeMany(100));
 </script>
 
 </html>

@@ -1,0 +1,60 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+    // normal add function in imperative 
+    // const add = (a, b) => a + b;
+
+    // due to the rule of the functional composition
+    const add = a => b => a + b;
+
+    // add10 function 
+    const add10 = add(10);
+
+    // add100 function 
+    const add100 = add(100);
+
+    // double function
+    const double = a => a * 2;
+
+    // by using ramda compose function 
+    let ramdaCompose = R.compose(add10, double, add100);
+
+    // by using ramda pipe function 
+    let ramdaPipe = R.pipe(add100, double, add10);
+
+    console.log("Ramda compose : " + ramdaCompose(100));
+    console.log("Ramda pipe : " + ramdaPipe(100));
+
+    // using R.add() by Ramda auto currying 
+    const value = R.add(10)(20);
+    console.log("Ramda add functio with auto currying : " + value);
+
+    // partial application R.curry(multi input function)()
+    const add1000 = R.curry(add)(1000);
+    console.log("Partial application with R.curry()() : " + add1000(200));
+
+    // tap function own 
+    const tap = fun => x => {
+        fun(x);
+        return x;
+    };
+
+    // function create with tap
+    const log = tap(console.log);
+    const newTapPipe = R.pipe(add100, log, double, log);
+    console.log("Testring tap in pipe : " + newTapPipe(20));
+
+    // ramda tap function 
+    const ramdaLog = R.tap(console.log)
+    const newRamdaTapPipe = R.pipe(add100, ramdaLog, double, ramdaLog);
+    console.log("Testring  ramda tap in pipe : " + newRamdaTapPipe(20));
+
+    
+
+
+
+
+</script>
+
+</html>
