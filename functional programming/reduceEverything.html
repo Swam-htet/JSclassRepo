@@ -1,0 +1,69 @@
+<html>
+<script>
+    // using reduce like map
+    let list = [1, 2, 3, 4, 5, 6]
+    let power2 = a => a * a;
+    let mapList = list.reduce((arr, b) => {
+        return arr.concat(power2(b))
+    }, [])
+    console.log(mapList);
+
+
+    // using reduce like filter 
+    let filterFun = (a) => a % 2 == 0;
+
+    let filterList = list.reduce((arr, b) => {
+
+        // return filterFun(b) ? (arr.concat(b)) : arr;
+        // in es6 style
+        // by using array distructuring
+        return filterFun(b) ? [...arr, b] : arr;
+
+    }, [])
+    console.log(filterList);
+
+    // own reduce function
+    function reduce(array, fun, initialValue) {
+        let accumulator;
+        if (initialValue != undefined) {
+            accumulator = initialValue;
+        } else {
+            accumulator = array[0];
+        }
+        // if initial value is undefined start array from 1
+        if (initialValue === undefined) {
+            for (let i = 1; i < array.length; i++) {
+                accumulator = fun(accumulator, array[i]);
+            }
+        }
+        // if initial value have something start array from 0
+        else {
+            // for (let i = 0; i < array.length; i++) {
+            //     accumulator = fun(accumulator, array[i]);
+            // }
+            for (const value of array) {
+                accumulator = fun(accumulator, value)
+            }
+        }
+        // return accumulator value
+        return accumulator;
+    }
+    // // sayar's source code 
+    // const reduce = (array, fn, initialValue) => {
+    //     let accumlator;
+    //     if (initialValue != undefined)
+    //         accumlator = initialValue;
+    //     else
+    //         accumlator = array[0];
+    //     if (initialValue === undefined)
+    //         for (let i = 1; i < array.length; i++)
+    //             accumlator = fn(accumlator, array[i])
+    //     else
+    //         for (const value of array)
+    //             accumlator = fn(accumlator, value)
+    //     // return acculator array
+    //     return [accumlator]
+    // }
+</script>
+
+</html>
