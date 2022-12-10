@@ -1,0 +1,55 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+    // object array 
+    const students = [{
+            name: 'Abby',
+            score: 84,
+            gender: 'Male',
+            city: 'Yangon',
+        },
+        {
+            name: 'Eddy',
+            score: 58,
+            gender: 'Female',
+            city: 'Mandalay',
+        },
+        {
+            name: 'Another',
+            score: 81,
+            gender: 'Male',
+            city: 'Yangon',
+        },
+        {
+            name: 'Jack',
+            score: 69,
+            gender: 'Female',
+            city: 'Tokyo',
+        }
+    ];
+
+    // this function for grade classification 
+    const byGrade = R.groupBy((student) => {
+        const score = student.score;
+        return score < 65 ? 'F' :
+            score < 70 ? 'D' :
+            score < 80 ? 'C' :
+            score < 90 ? 'B' : 'A';
+    });
+
+    let byGender = R.groupBy((student) => student.gender);
+    let result = byGender(students);
+    console.log('Result ', result);
+
+    // classify with city
+    let byCity = R.groupBy(student) => student.city;
+    let output = byCity(students);
+    console.log("by city : " + output);
+
+    // let byCity = R.groupBy((student) => student.city);
+    // result = byCity(students);
+    // console.log('Result ', result);
+</script>
+
+</html>

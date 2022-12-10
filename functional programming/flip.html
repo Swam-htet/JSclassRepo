@@ -4,11 +4,16 @@
 <script>
     // flip testing
 
-    // add function's parameter to array
-    // lt >> R.lt(2)(4) => true
-    const lessThan0 = R.lt(0);
+    // normal R.lt()
+    const greaterThan10 = R.lt(10);
 
-    const lessThan2 = lessThan0()
+    // check the number is less than 10 or not
+    console.log("R.lt()() return true, if first argument is less than the second argument");
+    console.log("Normal R.lt, lessThan(10) => " + greaterThan10(20));
+
+    // change normal filp by using R.flip()
+    const lessThan10 = R.flip(R.lt)(10);
+    console.log("By using R.flip() => " + lessThan10(1));
 </script>
 
 </html>
