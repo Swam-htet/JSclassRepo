@@ -1,0 +1,56 @@
+<html>
+<script>
+    // by using array.reduce(accumalator function,initial value);
+
+    // multiple pipe
+    const multiplePipe = (...funList) => {
+        return (x) => {
+            return funList.reduce((x, fn) => fn(x), x);
+        }
+    }
+
+    // multiple compose
+    const multipleCompose = (...funList) => {
+        return (x) => {
+            // reverse function list
+            let reverseFunList = funList.reverse();
+            return reverseFunList.reduce((x, fn) => fn(x), x);
+        }
+    }
+
+    // 3 functions
+    const add20 = a => a + 20;
+    const double = a => a * 2;
+    const add100 = a => a + 100;
+
+    // new Pipe
+    const newMultiplePipe = multiplePipe(add20, double, add100);
+
+    // new Compose
+    const newMulitpleCompose = multipleCompose(add100, double, add20);
+
+
+    // by using own reduce funtion reduce(array,accumulator function, initial value)
+
+    // own reduce function
+    const reduce = (array, fn, initialValue) => {
+        let accumlator;
+        if (initialValue != undefined)
+            accumlator = initialValue;
+        else
+            accumlator = array[0];
+        if (initialValue === undefined)
+            for (let i = 1; i < array.length; i++)
+                accumlator = fn(accumlator, array[i])
+        else
+            for (const value of array)
+                accumlator = fn(accumlator, value)
+        return [accumlator]
+    }
+
+    // using own reduce function const composeMany=(...fns)=>
+    (value) =>
+        reduce(fns.reverse(), (acc, fn) => fn(acc), value);
+</script>
+
+</html>
