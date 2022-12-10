@@ -1,0 +1,22 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+    // add currying 
+    const add = (a) => (b) => a = b;
+    // add100 
+    const add100 = add(100);
+    // add10
+    const add10 = add(10);
+
+    // identity
+    const identity = a => a;
+    console.log("Testing identity : " + identity(20))
+
+    // using ramdar identity
+    console.log("Testing ramda identity : " + R.identity(200));
+
+    
+</script>
+
+</html>

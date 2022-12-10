@@ -34,21 +34,7 @@
     const add1000 = R.curry(add)(1000);
     console.log("Partial application with R.curry()() : " + add1000(200));
 
-    // tap function own 
-    const tap = fun => x => {
-        fun(x);
-        return x;
-    };
-
-    // function create with tap
-    const log = tap(console.log);
-    const newTapPipe = R.pipe(add100, log, double, log);
-    console.log("Testring tap in pipe : " + newTapPipe(20));
-
-    // ramda tap function 
-    const ramdaLog = R.tap(console.log)
-    const newRamdaTapPipe = R.pipe(add100, ramdaLog, double, ramdaLog);
-    console.log("Testring  ramda tap in pipe : " + newRamdaTapPipe(20));
+    
 
     
 

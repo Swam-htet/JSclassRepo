@@ -1,0 +1,27 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+    // tap function own 
+    const tap = fun => x => {
+        fun(x);
+        return x;
+    };
+
+    const add = (a) => (b) => a + b;
+    const add100 = add(100);
+    const double = a => 1 * 2;
+
+
+    // function create with tap
+    const log = tap(console.log);
+    const newTapPipe = R.pipe(add100, log, double, log);
+    console.log("Testring tap in pipe : " + newTapPipe(20));
+
+    // ramda tap function 
+    const ramdaLog = R.tap(console.log)
+    const newRamdaTapPipe = R.pipe(add100, ramdaLog, double, ramdaLog);
+    console.log("Testring  ramda tap in pipe : " + newRamdaTapPipe(20));
+</script>
+
+</html>

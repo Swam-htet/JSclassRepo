@@ -1,0 +1,24 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+    // testing divide currying 
+    console.log("Testing divide currying from ramda : " + R.divide(20)(5));;
+
+    // tap function to debug
+    const log = R.tap(console.log);
+
+    // tap currying testing 
+    R.tap(console.log)("Hello world");
+
+    // list to sum, find avarage
+    let list = [10, 20, 30, 40, 0];
+
+    // in finding avarage of the array
+    // finding total and finding lenght of the array are need to run parallel in functional programming 
+
+    const average = R.converge(R.divide, [R.sum, R.length]);
+    console.log("Average of array : " + average(list));
+</script>
+
+</html>
