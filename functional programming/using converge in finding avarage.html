@@ -14,11 +14,11 @@
     // list to sum, find avarage
     let list = [10, 20, 30, 40, 0];
 
-    // in finding avarage of the array
-    // finding total and finding lenght of the array are need to run parallel in functional programming 
-
+    // in finding avarage of the array by using R.converge
     const average = R.converge(R.divide, [R.sum, R.length]);
     console.log("Average of array : " + average(list));
+
+    
 </script>
 
 </html>

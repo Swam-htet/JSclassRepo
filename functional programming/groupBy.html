@@ -38,18 +38,17 @@
             score < 90 ? 'B' : 'A';
     });
 
+    // groupBy with gender
     let byGender = R.groupBy((student) => student.gender);
     let result = byGender(students);
-    console.log('Result ', result);
+    console.log('Result by gender : ', result);
 
-    // classify with city
-    let byCity = R.groupBy(student) => student.city;
-    let output = byCity(students);
-    console.log("by city : " + output);
+    // groupBy with city
+    let byCity = R.groupBy((a) => a.city);
+    let resultCity = byCity(students);
+    console.log("Result by city : ", resultCity);
 
-    // let byCity = R.groupBy((student) => student.city);
-    // result = byCity(students);
-    // console.log('Result ', result);
+    let test = R.groupBy(a => a.gender)(students);
 </script>
 
 </html>
