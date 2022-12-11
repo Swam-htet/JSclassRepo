@@ -1,0 +1,20 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+    const add = (a, b) => a + b;
+    const add100 = R.curry(add)(100);
+
+    const double = R.multiply(2);
+
+    const divide = R.divide(4);
+    const reverseDivide = R.flip(R.divide)(4);
+
+    const log = R.tap(console.log);
+
+    const outputFunction = R.pipe(log, add100, log, reverseDivide, log, double);
+
+    console.log("output => " + outputFunction(100));
+</script>
+
+</html>

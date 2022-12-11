@@ -4,19 +4,25 @@
 <script>
     // using equals()
     let para = 10;
-    let list = [2,3,4,2,8,2];
+    let list = [2, 3, 4, 2, 8, 2];
 
     // R.equals()
     const equals10 = R.equals(10);
     console.log("This is testing R.equals() : " + equals10(para));
 
-    // R.all() and R.equals()
+    // equal2
     const equals2 = R.equals(2);
-    const allEquals2 = R.all(equals2);
+
+    // all equals 2
+    // const allEquals2 = R.all(equals2);
+    
+    const allEquals2 = R.all(R.equals(2));
     console.log("This is testing R.all and R.equals : " + allEquals2(list));
 
-    // using R.any()
-    const someEquals2 = R.any(equals2);
+    // anu equal 2
+    // const someEquals2 = R.any(equals2);
+
+    const someEquals2 = R.any(R.equals(2));
     console.log("This is testring R.any and R.equals : " + someEquals2(list));
 </script>
 

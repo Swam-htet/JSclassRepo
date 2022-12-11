@@ -31,7 +31,9 @@
     let person = {
         name: "Swam Htet"
     };
-    console.log(R.prop("name")(person));
+
+    const byProp = (name) => (obj) => R.prop(name)(obj);
+    const groupByProp = (obj) => R.groupBy(byProp);
 </script>
 
 </html>
