@@ -4,29 +4,29 @@
 <script>
     // object array 
     const students = [{
-            name: 'Abby',
-            score: 84,
-            gender: 'Male',
-            city: 'Yangon',
-        },
-        {
-            name: 'Eddy',
-            score: 58,
-            gender: 'Female',
-            city: 'Mandalay',
-        },
-        {
-            name: 'Another',
-            score: 81,
-            gender: 'Male',
-            city: 'Yangon',
-        },
-        {
-            name: 'Jack',
-            score: 69,
-            gender: 'Female',
-            city: 'Tokyo',
-        }
+        name: 'Abby',
+        score: 84,
+        gender: 'Male',
+        city: 'Yangon',
+    },
+    {
+        name: 'Eddy',
+        score: 58,
+        gender: 'Female',
+        city: 'Mandalay',
+    },
+    {
+        name: 'Another',
+        score: 81,
+        gender: 'Male',
+        city: 'Yangon',
+    },
+    {
+        name: 'Jack',
+        score: 69,
+        gender: 'Female',
+        city: 'Tokyo',
+    }
     ];
 
     // this function for grade classification 
@@ -34,28 +34,32 @@
         const score = student.score;
         return score < 65 ? 'F' :
             score < 70 ? 'D' :
-            score < 80 ? 'C' :
-            score < 90 ? 'B' : 'A';
+                score < 80 ? 'C' :
+                    score < 90 ? 'B' : 'A';
     });
 
-    // groupBy with gender
-    // let byGender = R.groupBy((student) => student.gender);
-    // let result = byGender(students);
-    let result = R.groupBy(a => a.gender)(students);
-    console.log('Result by gender : ', result);
+    // fixed byGender
+    let byGenderFix = R.groupBy(a => a.gender);
+    console.log('Group by gender : ', byGenderFix(students));
 
-    // groupBy with city
-    let byCity = R.groupBy((a) => a.city);
-    let resultCity = byCity(students);
-    console.log("Result by city : ", resultCity);
+    // fixed byCIty
+    let byCityFix = R.groupBy((a) => a.city);
+    console.log("Result by city : ", byCityFix(students));
+
+    // using R.prop() not fix 
+    let byProperty = propName => R.groupBy(R.prop(propName));
+
+    // now it is more easier to use
+    let byGender = byProperty("gender");
+    let byCity = byProperty('city');
+
+    resultByGender = byGender(students);
+    console.log("This is reult by gender by using R.prop() => ", resultByGender);
+
+    resultByCity = byCity(students);
+    console.log("This is reult by city by using R.prop() => ", resultByCity);
 
 
-    // let byProp = (propName) => (student) => R.prop(propName, student);
-    // let groupByProp = (propName) => R.groupBy(byProp(propName));
-
-    let groupByProp = (propName) => R.groupBy(R.prop(propName));
-    result = groupByProp('gender')(students);
-    console.log('Result ', result);
 </script>
 
 </html>

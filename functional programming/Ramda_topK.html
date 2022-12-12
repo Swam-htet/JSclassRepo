@@ -7,7 +7,19 @@
     // const logX = (x) => console.log("X is ", x);
     // const log = R.tap(logX);
 
-    let groupByCount;
+
+    let groupByCount = R.groupBy(R.identity)(arr);
+    console.log('Group Count ', groupByCount);
+    let countArrGroup = R.map((ele) => [ele[0], ele.length])(groupByCount);
+    let countArr = R.values(countArrGroup);
+    console.log('Count Arr ', countArr);
+    let sortedCount = R.sort((a, b) => b[1] - a[1])(countArr);
+    console.log('sorteCount ', sortedCount);
+
+    let topKFrequent = R.take(k)(sortedCount);
+    console.log('topKFrequent ', topKFrequent);
+    let finalResult = R.map(ele => ele[0])(topKFrequent);
+    console.log('finalResult ', finalResult);
 
 </script>
 
