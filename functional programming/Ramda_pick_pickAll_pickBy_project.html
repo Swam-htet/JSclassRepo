@@ -1,0 +1,33 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+    let person = {
+        name: "Abby",
+        score: 84,
+        gender: "Male",
+        city: "Yangon",
+    };
+
+    let result = R.pick(["name", "city", "salary"])(person);
+    console.log("This is testing pick : ", result);
+
+    result = R.pickAll(["name", "city", "salary"])(person);
+    console.log("This is testing pickAll : ", result);
+
+    result = R.pickBy((val, key) => val > 30)(person);
+    console.log("This is testing pickBy : ", result);
+
+    result = R.project(["a", "b"])([{
+        a: 19,
+        b: 30,
+        c: 44
+    }, {
+        a: 2,
+        b: 9,
+        c: 1
+    }]);
+    console.log("This is testing project", result);
+</script>
+
+</html>

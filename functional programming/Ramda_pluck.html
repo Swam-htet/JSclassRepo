@@ -1,0 +1,45 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+    const students = [{
+            name: 'Abby',
+            score: 84,
+            gender: 'Male',
+            city: 'Yangon',
+        },
+        {
+            name: 'Eddy',
+            score: 58,
+            gender: 'Female',
+            city: 'Mandalay',
+        },
+        {
+            name: 'Another',
+            score: 81,
+            gender: 'Male',
+            city: 'Yangon',
+        },
+        {
+            name: 'Jack',
+            score: 69,
+            gender: 'Female',
+            city: 'Tokyo',
+        }
+    ];
+
+    // to query name from student object list
+    let result = R.pluck("name")(students);
+    console.log("This is result : ", result);
+
+    // another version by using map and prop
+    result = R.map(R.prop("name"))(students);
+    console.log("This is result : ", result);
+
+
+    // to query name and gender from student objec list 
+    result = R.map(a => [a.name, a.gender])(students);
+    console.log("This is result : ", result);
+</script>
+
+</html>

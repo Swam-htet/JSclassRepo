@@ -1,0 +1,26 @@
+<html>
+<script>
+    const memonize = fun => {
+        let table = {};
+        return (x) => {
+            if (table[x] !== undefined) {
+                return table[x];
+            } else {
+                table[x] = fun(x);
+                return table[x];
+            }
+        }
+    }
+    const add = (a) => {
+        console.log("This is add function.");
+        return a * 100;
+    };
+    console.log("This is normal add function add(12,9) =>" + add(12));
+
+    const newAdd = memonize(add);
+
+    console.log("This is first time of newAdd(10) => " + newAdd(10));
+    console.log("This is second time of newAdd(10) => " + newAdd(10));
+</script>
+
+</html>

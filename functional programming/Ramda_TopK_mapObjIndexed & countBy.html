@@ -1,0 +1,40 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/ramda@0.27.1/dist/ramda.min.js"></script>
+<script>
+    let k = 2;
+    let arr = [2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 3];
+
+    // log output function 
+    const logX = x => console.log("X is => ", x);
+    // log by R.tap()
+    const log = R.tap(logX);
+
+    // group the number and count into object
+    // change the object's property to array
+    // change the object to array
+    // sort the array according to the frequence 
+    // take 2
+    // final result
+
+    // by using countBy()
+    let topFrequcnceK = R.pipe(
+        log,
+        R.countBy(R.identity),
+        log,
+        R.mapObjIndexed((value,key,object)=>[key,value]),
+        log,
+        R.values,
+        log,
+        R.sort((a,b)=>b[1]-a[1]),
+        log,
+        R.take(2),
+        log,
+        R.map(a=>a[0])
+
+        
+    )
+    console.log("This is testing with R.countBy() and R.mapObjIndexed(), Top K Frequence : ", topFrequcnceK(arr));
+
+</script>
+
+</html>

@@ -1,0 +1,18 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/ramda@0.27.1/dist/ramda.min.js"></script>
+
+<script>
+    let obj = {
+        a: {
+            b: [1, 2, 3]
+        }
+    };
+
+    let result = R.path(["a", "b"])(obj);
+    console.log("This is the result of path() : " + result);
+
+    result = R.pathEq(["a", "b", 1], 2)(obj);
+    console.log("This is the result of pathEq() : " + result);
+</script>
+
+</html>
