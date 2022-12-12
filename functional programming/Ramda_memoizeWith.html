@@ -1,0 +1,16 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+    let count = 0;
+    
+    
+
+    const test = n => (R.product(R.range(1, n + 1)));
+
+    const factorial = R.memoizeWith(Number)(test);
+
+    
+</script>
+
+</html>

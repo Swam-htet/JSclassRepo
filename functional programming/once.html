@@ -1,0 +1,31 @@
+<html>
+<script>
+    function processPayment() {
+        return 20;
+    }
+
+    // const once = (fn) => {
+    //     let done = false;
+    //     return function () {
+    //         return done ? undefined : ((done = true), fn.apply(this, arguments));
+    //     }
+    // }
+
+    const once = fn => {
+        let condi = false;
+        return function () {
+            if (condi) {
+                return undefined;
+            } else {
+                return (condi = true, fn.apply(this, arguments));
+            }
+        }
+    }
+    
+    let paymentOnce = once(processPayment);
+
+    console.log("Payment process => " + paymentOnce());
+    console.log("Payment process => " + paymentOnce());
+</script>
+
+</html>
