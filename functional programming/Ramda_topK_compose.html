@@ -1,0 +1,31 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/ramda@0.27.1/dist/ramda.min.js"></script>
+<script>
+    let k = 2;
+    let arr = [2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 3];
+
+    // log output function 
+    const logX = x => console.log("X is => ", x);
+    // log by R.tap()
+    const log = R.tap(logX);
+
+    // function to find out
+    let topFrequcnceK = R.pipe(
+        log,
+        R.groupBy(R.identity),
+        log,
+        R.map((a) => [a[0], a.length]),
+        log,
+        R.values,
+        log,
+        R.sort((a, b) => b[1] - a[1]),
+        log,
+        R.take(2),
+        log,
+        R.map((a) => a[0]),
+        log
+    );
+    console.log("Top K freqnence : ", topFrequcnceK(arr));
+</script>
+
+</html>

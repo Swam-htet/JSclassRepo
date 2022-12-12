@@ -1,0 +1,34 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/ramda@0.27.1/dist/ramda.min.js"></script>
+<script>
+    let k = 2;
+    let arr = [2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 3];
+
+    // group the same number into the { [1,1,1,1], [2,2,2,], [3,3] }
+    let groupByNumber = R.groupBy(R.identity)(arr);
+    console.log("Group by number : ", groupByNumber);
+
+    // count the array inside the object 
+    // {[1,4],[2,3],[3,2]}
+    let countArrGroup = R.map((a) => [a[0], a.length])(groupByNumber);
+    console.log("Counting array Object : ", countArrGroup);
+
+    // change the count array group object to array 
+    // by taking value out of the object to array 
+    let countValue = R.values(countArrGroup);
+    console.log("Counting value : ", countValue);
+
+    // sort group by frequency in descending 
+    let sortCountValue = R.sort((a, b) => b[1] - a[1])(countValue);
+    console.log("After sorting depending on the frequence descending order: ", sortCountValue);
+
+    // take 2 elements from sorted array
+    let topKFrequence = R.take(2)(sortCountValue);
+    console.log("Top K frequence : ", topKFrequence);
+
+    // showing final result
+    let final = R.map((a) => a[0])(topKFrequence);
+    console.log("Final top K frequence : ", final);
+</script>
+
+</html>
