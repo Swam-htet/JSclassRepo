@@ -1,0 +1,29 @@
+<html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ramda/0.25.0/ramda.min.js"></script>
+
+<script>
+
+    let numList = [10, 20, 44, 56];
+
+    // const add = list => {
+    //     if (R.isEmpty(list)) {
+    //         return 0;
+    //     }
+    //     else {
+    //         return R.head(list) + add(R.tail(list));
+    //     }
+    // }
+
+    const add = list => {
+        return R.isEmpty(list) ? 0 : R.head(list) + add(R.tail(list));
+    }
+
+
+
+    console.log("This is resursive function of adding => " + add(numList));
+
+
+
+</script>
+
+</html>

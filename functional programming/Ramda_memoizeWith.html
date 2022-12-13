@@ -3,13 +3,13 @@
 
 <script>
     let count = 0;
-    
-    
 
-    const test = n => (R.product(R.range(1, n + 1)));
+    const log = R.tap(console.log)
+
+    const test = n => log(R.product(R.range(1, n + 1)));
 
     const factorial = R.memoizeWith(Number)(test);
-
+    console.log("This is testing memorizeWith function => " + factorial(4));
     
 </script>
 
