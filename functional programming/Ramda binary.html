@@ -1,0 +1,17 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.min.js"></script>
+<script>
+    function takeThree(a, b, c) {
+        return [a, b, c];
+
+    }
+
+    let output = takeThree(10, 20, 30);
+    console.log("This is take three : ", output);
+
+    const takeTwo = R.binary(takeThree);
+    output = takeTwo(10, 40, 60);
+    console.log("This is take two by R.binary : ", output);
+</script>
+
+</html>

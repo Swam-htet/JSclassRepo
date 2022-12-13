@@ -1,0 +1,38 @@
+<html>
+<!-- <script src="https://cdn.jsdelivr.net/npm/ramda@0.27.1/dist/ramda.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+    const students = [{
+            name: 'Abby',
+            score: 84,
+            gender: 'Male',
+            city: 'Yangon',
+        },
+        {
+            name: 'Eddy',
+            score: 58,
+            gender: 'Female',
+            city: 'Mandalay',
+        },
+        {
+            name: 'Another',
+            score: 81,
+            gender: 'Male',
+            city: 'Yangon',
+        },
+        {
+            name: 'Jack',
+            score: 69,
+            gender: 'Female',
+            city: 'Tokyo',
+        }
+    ];
+
+    output = R.collectBy(R.prop("city"))(students);
+    console.log("This is output => " , output);
+
+    let studentWithSameCity = R.collectBy(R.prop('city'), students);
+    console.log('SameCity ', studentWithSameCity);
+</script>
+
+</html>

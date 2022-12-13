@@ -6,7 +6,7 @@
     const useDefault = () => ({ firstName: 'Bob', lastName: 'Loblaw' });
 
     //recoverFromFailure :: String -> Promise ({ firstName, lastName })
-    const recoverFromFailure = R.pipe(failedFetch,R.otherwise(useDefault),R.andThen(R.identity));
+    const recoverFromFailure = R.pipe(failedFetch,R.otherwise(useDefault),R.andThen(R.pick(["firstName","lastName"])));
 
     recoverFromFailure(12345).then(console.log);
 

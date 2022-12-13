@@ -1,5 +1,37 @@
 <html>
 <script>
+    let r = 2;
+    let arr = [2, 2, 2, 1, 1, 1, 1, 2, 2, 2, 3];
+
+    let obj = {};
+
+    // count the elements of the array
+    for (let i = 0; i < arr.length; i++) {
+        let value = arr[i];
+        if (obj[value]) {
+            obj[value]++;
+        } else {
+            obj[value] = 1;
+        }
+    }
+
+    console.log("This is after counting the array => ", obj);
+
+    // change the object to array
+    let countArray = Object.entries(obj);
+    console.log("This is changing the object to array ", countArray);
+
+    // sort the array 
+    let sortArray = countArray.sort((a, b) => b[1] - a[1]);
+    console.log("This is after sorting => ", sortArray);
+
+    // taking only two required
+    let selected = [];
+    for (let i = 0; i < r; i++) {
+        selected.push(sortArray[i]);
+    }
+    console.log("This is the final result => ", selected);
+
     
 </script>
 

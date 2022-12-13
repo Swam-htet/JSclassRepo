@@ -1,0 +1,18 @@
+<html>
+<script>
+    const unaryUpdate = fun => {
+        if (fun.length == 1) {
+            return fun;
+        } else {
+            return a => fun(a);
+        }
+    }
+    const output = parseInt(10,1);
+    console.log("This is parseInt with two parameter => " + output);
+
+    const test = unaryUpdate(parseInt);
+    let result = test(10,20);
+    console.log("This is parseInt with two parameter after unary update => " + result);
+</script>
+
+</html>
