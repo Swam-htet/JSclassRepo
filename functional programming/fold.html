@@ -1,0 +1,48 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+
+    let Sum = {
+        empty: () => 0,
+        concat: (a, b) => a + b
+    }
+
+    let Multi = {
+        empty: () => 1,
+        concat: (a, b) => a * b
+    }
+
+    let Max = {
+        empty: () => -Infinity,
+        concat: (a, b) => a > b ? a : b,
+    }
+
+    let Min = {
+        empty: () => Infinity,
+        concat: (a, b) => a < b ? a : b,
+    }
+
+    function fold(array, monoid) {
+        let accumulator = monoid.empty();
+        for (let i = 0; i < array.length; i++) {
+            let currentValue = array[i];
+            accumulator = monoid.concat(accumulator, currentValue);
+
+        }
+        return accumulator;
+    }
+    let list = [10, 20, 30, 40];
+    let result = fold(list, Sum);
+    console.log("This is testing fold with Sum monoid => " + result);
+
+    result = fold(list, Multi);
+    console.log("This is testing fold with Mult monoid => " + result);
+
+    result = fold(list, Min);
+    console.log("This is testing fold with Min monoid => " + result);
+
+    result = fold(list, Max);
+    console.log("This is testing fold with Max monoid => " + result);
+</script>
+
+</html>

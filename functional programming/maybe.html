@@ -1,0 +1,15 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+    const Maybe = (v) => {
+        return ({
+            value: v,
+            map: (fn) => {
+                R.isNil(v) ? Maybe.of('v') : Maybe(fn(v));
+            },
+            valueOf: () => v,
+        })
+    }
+</script>
+
+</html>

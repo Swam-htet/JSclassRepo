@@ -1,0 +1,35 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+    function Functor(v) {
+        return ({
+            value: v,
+            map: (fn) => Functor(fn(v)),
+            valueOf: () => v,
+        })
+
+    }
+    const value = Functor(10);
+    console.log("This is value => ", value);
+
+    const ityValue = value.map(R.identity);
+    console.log("This is the value of identity return => " , ityValue);
+
+    // check the value of normal return object and indentity return
+    console.log("This is rule 1 => " , value.value == ityValue.value);
+
+
+    // map flow 
+    const mapFlow = Functor(20).map(R.multiply(2)).map(R.add(100));
+    console.log("This is map flow value => ", mapFlow);
+
+    const mapPipe = Functor(20).map(R.pipe(R.multiply(2),R.add(100)));
+    console.log("This is map pipe flow => ", mapPipe);
+
+    const mapCompose = Functor(20).map(R.compose(R.add(100),R.multiply(2)));
+    console.log("This is map compose flow => ", mapCompose);
+
+    console.log("Rule 2 => " , mapFlow.value == mapPipe.value);
+</script>
+
+</html>

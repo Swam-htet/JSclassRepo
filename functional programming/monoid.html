@@ -1,0 +1,30 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+
+    // + monoid 
+    let Sum = {
+        empty: () => 0,
+        concat: (a, b) => a + b
+    };
+
+    // * modoid 
+    let Mult = {
+        empty: () => 1,
+        concat: (a, b) => a * b
+    };
+
+
+    let list = [10, 20, 45, 65];
+
+    // by using array.reduce()
+    // (callbacl,intial value)   => (monoid.concat,monoid.empty())
+    let result = list.reduce(Sum.concat, Sum.empty());
+
+    console.log("This is result => " + result);
+
+
+
+</script>
+
+</html>
