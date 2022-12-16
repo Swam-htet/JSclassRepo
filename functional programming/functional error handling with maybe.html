@@ -1,20 +1,21 @@
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
 <script>
-    const computeSomethingAsync = (v) => {
+    function checkAsync(v) {
         return new Promise(function (resolve, reject) {
-            setTimeout: (() => {
-                if (v > 1000) {
-                    resolve(v);
-                } else {
-                    reject(new Error("Something is wrong"));
-                }
-            },2000)
+            setTimeout(() => {
+                if (v < 20) {
+                    resolve(v + 1000)
+                } else {}
+                reject(new Error("Reject Error!"))
+            }, 2000);
+
         })
-    };
+    }
 
+    checkAsync(1).then(data => console.log(data), e => console.log(e));
 
-    computeSomethingAsync(200).then(data => console.log(data))
+    
 </script>
 
 </html>

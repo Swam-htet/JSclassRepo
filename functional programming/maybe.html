@@ -1,7 +1,6 @@
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
 <script>
-
     const toUpper = (str) => str.toUpperCase();
     const appendHi = (str) => str + ' hi';
     const compose = (f, g) => (x) => f(g(x));
@@ -18,6 +17,9 @@
                 return this.isNoting() ? Maybe.of(v) : Maybe(fn(v));
             },
             valueOf: () => v,
+            orElse: function (thisValue) {
+                return this.isNoting() ? Maybe.of(thisValue) : Maybe.of(v);
+            },
         })
     }
 
@@ -38,6 +40,9 @@
 
 
 
+    // testing orElse()
+    let defaultValue = Maybe.of().orElse("Default string");
+    console.log("This is default value => " , defaultValue);
 </script>
 
 </html>
