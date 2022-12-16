@@ -1,15 +1,43 @@
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
 <script>
-    const Maybe = (v) => {
+
+    const toUpper = (str) => str.toUpperCase();
+    const appendHi = (str) => str + ' hi';
+    const compose = (f, g) => (x) => f(g(x));
+    const toUpperAndAppendHi = compose(appendHi, toUpper);
+
+    const tokens = (str) => str.split(' ');
+
+
+    function Maybe(v) {
         return ({
             value: v,
-            map: (fn) => {
-                R.isNil(v) ? Maybe.of('v') : Maybe(fn(v));
+            isNoting: () => v === undefined || v === null,
+            map: function (fn) {
+                return this.isNoting() ? Maybe.of(v) : Maybe(fn(v));
             },
             valueOf: () => v,
         })
     }
+
+    Maybe.of = a => Maybe(a);
+
+    let str = "Hello world";
+    let result = Maybe.of(str);
+
+    // maybe error handling
+    // functional error handling
+    console.log("This is result's value =>", result.value);
+    console.log("This is result => ", result);
+
+    const testValue = "testing second value ";
+    let secondResult = Maybe.of(testValue).map(toUpperAndAppendHi).map(tokens);
+    console.log("This is second result's value => ", secondResult.value);
+    console.log("This is second result => ", secondResult);
+
+
+
 </script>
 
 </html>

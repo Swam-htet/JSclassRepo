@@ -1,0 +1,39 @@
+<html>
+<script>
+
+    function div(a, b) {
+        if (a == 0 && b == 0) {
+            throw new Error("A and b is zero");
+        }
+        else {
+            return a / b;
+        }
+    }
+    // console.log("div (5,2)", div(5, 2));
+
+    function another() {
+        try {
+            return div(0, 0);
+            console.log('Next line after div(0,0)');
+        }
+        catch (e) {
+            console.log("Error in catch", e);
+            return undefined;
+            // throw e;
+        }
+        // finally {
+        //     console.log('Finally always run');
+        //     // return 100;
+        // }
+    }
+    let result = another();
+    console.log('Result ', result);
+
+
+
+</script>
+
+</html>
+</script>
+
+</html>

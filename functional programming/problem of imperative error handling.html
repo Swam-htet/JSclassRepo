@@ -1,38 +1,21 @@
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
 <script>
-    const toUpper = (str) => str.toUpperCase();
-    const appendHi = (str) => str + ' hi';
-    const compose = (f, g) => (x) => f(g(x));
-
-    // traditional error handling can not use for  asynchronous
-
-    const Maybe = (v) => ({
-        value: v,
-        map: (fn) => {
-            return R.isNil(v) ? Maybe.of(v) : Maybe(fn(v));
-        },
-        valueOf: () => v,
-    });
-
-    // function with asynchronous
-
+    
     function asynchronousError() {
         setTimeout(() => {
             throw Error("This is asynchronous error")
         }, 2000);
     }
 
-    // error with setTimeOut call
-    // asynchronousError();
-    // catch can't catch error error Uncaught Error
-    // that is why functional error handling is important 
     try{
         asynchronousError();
     }
     catch(e){
         console.log("This is error => " , e);
     }
+
+    
     console.log("This is output after all.");
 
 
