@@ -1,0 +1,25 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+    // functor function 
+    const Functor = function (v) {
+        return ({
+            value: v,
+            map: (fn) => Functor(fn(v)),
+            valueOf: () => v,
+        });
+    }
+    // point of functor
+    Functor.of = (a) => Functor(a);
+
+    // applicative functor
+    const add = (x, y) => x + y;
+    const addCurry = R.curry(add);
+
+    let counter = Functor.of(100).map(addCurry);
+    console.log("This is counter => ", counter);
+    console.log("This is counter's value => ", counter.value);
+    console.log("This is running counter's value function =>", counter.value(200));
+</script>
+
+</html>

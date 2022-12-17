@@ -9,7 +9,7 @@
     const tokens = (str) => str.split(' ');
 
 
-    function Maybe(v) {
+    const Maybe = function (v) {
         return ({
             value: v,
             isNoting: () => v === undefined || v === null,
@@ -38,11 +38,9 @@
     console.log("This is second result's value => ", secondResult.value);
     console.log("This is second result => ", secondResult);
 
-
-
     // testing orElse()
     let defaultValue = Maybe.of().orElse("Default string");
-    console.log("This is default value => " , defaultValue);
+    console.log("This is default value => ", defaultValue);
 </script>
 
 </html>

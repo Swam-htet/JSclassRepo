@@ -1,0 +1,43 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+    class Container {
+        static of (val) {
+            return new Container(val);
+        }
+
+        constructor(val) {
+            this._value = val;
+        }
+        map(fn) {
+            return Container.of(fn(this._value));
+        }
+        ap(c) {
+            return c.map(fn => this.map(fn));
+        }
+        value() {
+            return this._value;
+        }
+    }
+
+    let add = (x, y) => x + y;
+    let curriedAdd = R.curry(add);
+    console.log('Curried Add ', curriedAdd);
+
+
+
+    // double method
+    const double = (x) => x * 2;
+    let counter = Container.of(200).map(curriedAdd);
+
+    let numberCounter = Container.of(20);
+
+    console.log("This is counter => ", counter);
+    console.log("This is number counter => ", numberCounter);
+
+    let result = numberCounter.ap(counter);
+    console.log("This is result => ", result);
+    console.log("This is result's value => ", result.value());
+</script>
+
+</html>
