@@ -1,0 +1,16 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+    let list = [10, 20, 30, 40];
+    // using .flatMap()
+    let newList = list.flatMap(a => [a, a + 1000]);
+
+    // after doing .flatMap() can easily do .map()
+    console.log("list => ", list);
+    console.log("New list => ", newList);
+
+    let finalList = newList.map(a => a + " OK!");
+    console.log("Final list => " , finalList);
+</script>
+
+</html>
