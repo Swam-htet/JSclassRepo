@@ -1,6 +1,6 @@
 <html>
 <script>
-    const MayBe = (function () {
+    const Maybe = function () {
         const Some = function (x) {
             this.x = x
         };
@@ -15,7 +15,7 @@
             return `Some(${this.x})`;
         };
 
-        const None = function () { };
+        const None = function () {};
         None.fmap = () => None;
         None.bind = () => None;
         None.toString = () => 'None';
@@ -26,21 +26,21 @@
             Some,
             None
         }
-    })();
+    }
 
-    const div = (a, b) => b === 0 ? null : a / b;
-    const mDiv = MayBe.lift(div);
+    // const div = (a, b) => b === 0 ? null : a / b;
+    // const mDiv = MayBe.lift(div);
 
-    console.log(div(10, 0));
-    console.log("FlatMap ", mDiv(100, 2).fmap(x => x * 2) + '');
-    console.log("Bind ", mDiv(100, 2).bind(x => x * 2) + '');
-    console.log('Monad ', mDiv(100, 10));
+    // console.log(div(10, 0));
+    // console.log("FlatMap ", mDiv(100, 2).fmap(x => x * 2) + '');
+    // console.log("Bind ", mDiv(100, 2).bind(x => x * 2) + '');
+    // console.log('Monad ', mDiv(100, 10));
 
-    var str = MayBe.of();
-    //var str = MayBe.of("Something");
-    var newStr = str.fmap(x => x.toUpperCase())
-        .fmap(x => x.split(" ")[1]);
-    console.log("Str ", newStr);   
+    // var str = MayBe.of();
+    // //var str = MayBe.of("Something");
+    // var newStr = str.fmap(x => x.toUpperCase())
+    //     .fmap(x => x.split(" ")[1]);
+    // console.log("Str ", newStr);
 </script>
 
 </html>

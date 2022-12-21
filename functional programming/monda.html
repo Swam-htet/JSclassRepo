@@ -1,0 +1,26 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+    const Monad = {
+        of: (v) => ({
+            value: v,
+            valueOf: () => v,
+            map: (fn) => Monad.of(fn(v)),
+            flatMap: (fn) => fn(v),
+        })
+    }
+
+    let myMonad = Monad.of(10);
+    let newMonad = a => Monad.of(a);
+
+    // let newMonad = Monad.of(a=>a+1);
+    let fun = a => a + 100;
+
+    let mapMonad = Monad.of(10).map(Monad.of(fun));
+    let flatMapMonad = Monad.of(10).flatMap(Monad.of(fun));
+
+    console.log("Map Monad => ", mapMonad);
+    console.log("Flat Map Monad => ", flatMapMonad);
+</script>
+
+</html>
