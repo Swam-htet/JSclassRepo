@@ -5,17 +5,15 @@
         return new Promise(function (resolve, reject) {
             setTimeout(() => {
                 if (v < 20) {
-                    resolve(v + 1000)
+                    resolve(v + 1000);
                 } else {}
-                reject(new Error("Reject Error!"))
+                reject(new Error("Reject Error!"));
             }, 2000);
 
         })
     }
 
-    checkAsync(1).then(data => console.log(data), e => console.log(e));
-
-    
+    checkAsync(8999).then(data => console.log(data), e => console.log(e));
 </script>
 
 </html>
