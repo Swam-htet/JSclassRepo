@@ -1,0 +1,16 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+    const Functor = {
+        of: (v) => ({
+            value: v,
+            //inspect: () => `Functor(${v})`,
+            map: fn => Functor.of(fn(v))
+        })
+    }
+
+    let myFunctor = Functor.of(Functor.of(20));
+    console.log("This is result => ", myFunctor);
+</script>
+
+</html>

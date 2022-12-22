@@ -14,7 +14,7 @@
             value: v,
             isNoting: () => v === undefined || v === null,
             map: function (fn) {
-                return this.isNoting() ? Maybe.of(v) : Maybe(fn(v));
+                return this.isNoting() ? Maybe.of(v) : Maybe.of(fn(v));
             },
             valueOf: () => v,
             orElse: function (thisValue) {
@@ -26,7 +26,7 @@
     Maybe.of = a => Maybe(a);
 
     let str = "Hello world";
-    str = un;
+    // str = undefined;
     let result = Maybe.of(str);
 
     // maybe error handling

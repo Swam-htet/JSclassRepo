@@ -1,6 +1,8 @@
 <html>
 <script>
-    const Maybe = function () {
+    const MayBe = (function () {
+
+        // something
         const Some = function (x) {
             this.x = x
         };
@@ -15,32 +17,31 @@
             return `Some(${this.x})`;
         };
 
+        // nothing
         const None = function () {};
         None.fmap = () => None;
         None.bind = () => None;
         None.toString = () => 'None';
 
-        return {
-            of: (x) => x === null || x === undefined ? None : new Some(x),
+        return ({
+            of: (x) => x === null || x === undefined ? new None() : new Some(x),
             lift: (fn) => (...args) => MayBe.of(fn(...args)),
             Some,
             None
-        }
-    }
+        })
+    })();
 
-    // const div = (a, b) => b === 0 ? null : a / b;
-    // const mDiv = MayBe.lift(div);
+    console.log('This is maybe => ', MayBe.of(20));
 
-    // console.log(div(10, 0));
-    // console.log("FlatMap ", mDiv(100, 2).fmap(x => x * 2) + '');
-    // console.log("Bind ", mDiv(100, 2).bind(x => x * 2) + '');
-    // console.log('Monad ', mDiv(100, 10));
+    const div = (a, b) => b === 0 ? null : a / b;
+    const mDiv = MayBe.lift(div);
 
-    // var str = MayBe.of();
-    // //var str = MayBe.of("Something");
-    // var newStr = str.fmap(x => x.toUpperCase())
-    //     .fmap(x => x.split(" ")[1]);
-    // console.log("Str ", newStr);
+    console.log(div(10, 0));
+    console.log('Monad ', mDiv(100, 10));
+    console.log("FlatMap ", mDiv(100, 2).fmap(x => x * 2) + '');
+    console.log("Bind ", mDiv(100, 2).bind(x => x * 2) + '');
+
+
 </script>
 
 </html>

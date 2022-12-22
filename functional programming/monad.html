@@ -2,25 +2,30 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
 <script>
     const Monad = {
-        of: (v) => ({
-            value: v,
-            valueOf: () => v,
-            map: (fn) => Monad.of(fn(v)),
-            flatMap: (fn) => fn(v),
+        of: value => ({
+            value: value,
+            inspect: () => `Monad(${deepInspect(value)})`,
+            map: fn => Monad.of(fn(value)),
+            flatMap: fn => fn(value)
         })
-    }
+    };
+    // const myMonad = Monad.of(100); // Monad(1)
+    // console.log("myMonad => ", myMonad);
 
-    let myMonad = Monad.of(10);
-    let newMonad = a => Monad.of(a);
+    const add1Monad = a => Monad.of(a + 1);
+    // console.log("add1Monad => ", add1Monad);
 
-    // let newMonad = Monad.of(a=>a+1);
-    let fun = a => a + 100;
+    // testing 
+    const add100 = R.add(100);
+    const testing = Monad.of(20).map(add100).flatMap(add1Monad);
+    console.log("Testing => ", testing);
+    console.log("Testing's value => ", testing.value);
 
-    let mapMonad = myMonad.map(Monad.of(fun));
-    let flatMapMonad = myMonad.flatMap(Monad.of(fun));
 
-    console.log("Map Monad => ", mapMonad);
-    console.log("Flat Map Monad => ", flatMapMonad);
+    // console.log('Two level ', myMonad.map(add1Monad));
+
+    // const myMonadPlus1 = myMonad.flatMap(add1Monad);
+    // console.log('One layer ', myMonadPlus1.value);
 </script>
 
 </html>

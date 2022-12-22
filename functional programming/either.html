@@ -41,10 +41,30 @@
     console.log('Something ', something);
 
     // either 
-    const Either = {
-        Some: Some,
-        Nothing: Nothing
-    }
+    // const Either = {
+    //     Some: Some,
+    //     Nothing: Nothing
+    // }
+
+    // either function 
+
+    // const Either = {
+    //     Some: (v) => ({
+    //         value: v,
+    //         valueOf: () => v,
+    //         map: function (fn) {
+    //             return Some(fn(v));
+    //         },
+    //     }),
+    //     Nothing: (v) => ({
+    //         value: v,
+    //         valueOf: () => v,
+    //         map: function (fn) {
+    //             return Nothing(v);
+    //         },
+    //     })
+
+    // }
 
     function div(a, b) {
         if (a == 0 && b == 0) {
@@ -56,7 +76,7 @@
     let incOne = (x) => x + 1;
 
     let result = div(0, 0).map(incOne);
-    
+
     console.log('Result ', result);
 </script>
 

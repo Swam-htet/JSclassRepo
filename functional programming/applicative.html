@@ -9,6 +9,7 @@
         constructor(val) {
             this._value = val;
         }
+
         map(fn) {
             return Container.of(fn(this._value));
         }
@@ -21,7 +22,7 @@
     }
 
     let add = (x, y) => x + y;
-    let curriedAdd = R.curry(add);
+    let curriedAdd = x => y => x + y;
     console.log('Curried Add ', curriedAdd);
 
 
@@ -32,8 +33,8 @@
 
     let numberCounter = Container.of(20);
 
-    console.log("This is counter => ", counter);
-    console.log("This is number counter => ", numberCounter);
+    console.log("This is counter => ", counter.value());
+    console.log("This is number counter => ", numberCounter.value());
 
     let result = numberCounter.ap(counter);
     console.log("This is result => ", result);
