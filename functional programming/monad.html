@@ -9,23 +9,24 @@
             flatMap: fn => fn(value)
         })
     };
-    // const myMonad = Monad.of(100); // Monad(1)
-    // console.log("myMonad => ", myMonad);
+    const myMonad = Monad.of(100); // Monad(1)
+    console.log("myMonad => ", myMonad);
 
     const add1Monad = a => Monad.of(a + 1);
-    // console.log("add1Monad => ", add1Monad);
+    console.log("add1Monad => ", add1Monad);
 
     // testing 
-    const add100 = R.add(100);
-    const testing = Monad.of(20).map(add100).flatMap(add1Monad);
-    console.log("Testing => ", testing);
-    console.log("Testing's value => ", testing.value);
+    // const add100 = R.add(100);
+    // const testing = Monad.of(20).map(add100).flatMap(add1Monad);
+    // console.log("Testing => ", testing);
+    // console.log("Testing's value => ", testing.value);
 
 
-    // console.log('Two level ', myMonad.map(add1Monad));
+    console.log('Two level ', myMonad.map(add1Monad));
 
-    // const myMonadPlus1 = myMonad.flatMap(add1Monad);
-    // console.log('One layer ', myMonadPlus1.value);
+    const myMonadPlus1 = myMonad.flatMap(add1Monad);
+    console.log('One layer ', myMonadPlus1);
+    
 </script>
 
 </html>

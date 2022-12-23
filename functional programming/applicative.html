@@ -2,20 +2,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
 <script>
     class Container {
-        static of (val) {
-            return new Container(val);
-        }
 
+        // constructor
         constructor(val) {
             this._value = val;
         }
 
-        map(fn) {
-            return Container.of(fn(this._value));
+        // of
+        static of (val) {
+            return new Container(val);
         }
+
+        // map
+        map(fn) {
+            return new Container(fn(this._value));
+        }
+
+        // applicative
         ap(c) {
             return c.map(fn => this.map(fn));
         }
+
+        // valueOf
         value() {
             return this._value;
         }
@@ -29,11 +37,12 @@
 
     // double method
     const double = (x) => x * 2;
+
     let counter = Container.of(200).map(curriedAdd);
 
     let numberCounter = Container.of(20);
 
-    console.log("This is counter => ", counter.value());
+    console.log("This is counter => ", counter.value()(300));
     console.log("This is number counter => ", numberCounter.value());
 
     let result = numberCounter.ap(counter);
