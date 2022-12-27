@@ -10,7 +10,7 @@
         map() {
             return Left(value);
         },
-        toString: () => `Left(${ value })`,
+        toString: () => `Left(${value})`,
         process(sucess, failure) {
             return Left(failure(value));
         }
@@ -24,7 +24,7 @@
         map(fn) {
             return Right(fn(value));
         },
-        toString: () => `Right(${ value })`,
+        toString: () => `Right(${value})`,
         process(sucess, failure) {
             return Right(sucess(value));
         }
