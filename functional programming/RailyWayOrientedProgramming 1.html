@@ -1,5 +1,7 @@
 <html>
 <script>
+
+
     //sad path    
     const Left = (value) => ({
         map() {
@@ -8,10 +10,10 @@
         join() {
             return Left.of(value);
         },
-        chain() {
+        flatmap() {
             return Left.of(value);
         },
-        toString: () => `Left(${ value })`,
+        toString: () => `Left(${value})`,
         val() {
             return value;
         },
@@ -21,6 +23,9 @@
 
     });
     Left.of = value => Left(value);
+
+
+
 
     const Right = (value) => ({
         val() {
@@ -39,28 +44,28 @@
                 return Right.of(value);
             }
         },
-        chain(fn) {
+        flatmap(fn) {
             return fn(value);
         },
         ap(otherEither) {
-            const functionToRun = otherEither.val();
-            console.log('Function to run ', functionToRun);
-            return this.map(functionToRun);
+            // const functionToRun = otherEither.val();
+            // console.log('Function to run ', functionToRun);
+            return this.map(otherEither.val());
         },
-        toString: () => `Id(${ value })`
+        toString: () => `Right(${value})`
     });
-
-
     Right.of = value => Right(value);
+    
     console.log("Left ", Left.of(3).map().toString());
     console.log("Right >>", Right.of(3).map(x => x + 1).val());
 
-    
     console.log(Right.of(Left.of(3)).map(x => x + 1).join().toString());
-    console.log("Right ", Right.of(3).map(x => x + 1).chain(x => x + 4));
+    console.log("Right 3 ,map, flat map >> ", Right.of(3).map(x => x + 1).flatmap(x => x + 4));
 
     let monadFunc = Right.of(x => x + 1);
     console.log("Right ", Right.of(1).ap(monadFunc).val());
+
+
 </script>
 
 </html>
