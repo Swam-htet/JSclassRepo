@@ -1,0 +1,90 @@
+<html>
+<script>
+    // obj to check
+    let obj = {
+        name: "Tk",
+        age: 12,
+    };
+
+
+
+    // main requirement function 
+    const isValidAge = (obj) => age > 0 && age < 100;
+
+    // success case
+    const success = (value) => {
+        return {
+            success: true,
+            errors: []
+        };
+    }
+
+
+    // failure case
+    const failure = (value) => {
+        return {
+            success: false,
+            errors: value
+        };
+    }
+
+    // currying function for min 
+    const min = limit => message => value => {
+        return value < limit ?
+            success(true) :
+            failure([message]);
+    };
+
+    // currying function for max
+    const max = limit => message => value => {
+        return value > limit ?
+            success(true) :
+            failure([message]);
+    };
+
+    // curry function for equal
+    const notEqual = limit => message => value => {
+        return value == limit ?
+            success(true) :
+            failure([message]);
+    }
+
+    // less than partial application function
+    const lessThan100 = min(100)('It should be less than 100');
+
+    console.log('lessThan100 30 >> ', lessThan100(30));
+    console.log('lessThan100 101 >> ', lessThan100(101));
+
+
+    // greater than partial application function
+    const greaterThan0 = max(0)('It should be greater than 0');
+    console.log('Greater than 0 >>', greaterThan0(20));
+
+    // equal partial application function
+    const notEqual60 = notEqual(60)("it is not equal to the 60.");
+    console.log("Equal to => ", notEqual60(60));
+
+    //Combine validator result
+    const accumulator = (a, b) => {
+        return {
+            success: a.success && b.success,
+            errors: a.errors.concat(b.errors),
+        }
+    };
+
+
+
+    // validation compose function
+    const validatorCompose = function (...validatorFunctions) {
+        return function (value) {
+            return validatorFunctions.reduce((acc, fn) => {
+                // let validatorResult = fn(value);
+                return accumulator(acc, fn(value));
+            }, success(true));
+        }
+    }
+    const valid = validatorCompose(greaterThan0, notEqual60, lessThan100);
+    console.log('isValid ', valid(obj.age));
+</script>
+
+</html>

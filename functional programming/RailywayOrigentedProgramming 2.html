@@ -37,14 +37,14 @@
 
 
     const leftHello = Left('Hello world');
+    console.log("Left string >> " , leftHello);
     const rightHello = Right('Hello world');
+    console.log("Right string >> ", rightHello);
 
 
 
     leftHello.map(helloToGreetings).map(x => console.log('Error case ', x));
     rightHello.map(helloToGreetings).map(x => console.log('Success case ', x));
-
-
 
 
 
@@ -65,6 +65,7 @@
     div(10, 0).map(x => x * 2)
         .process(x => console.log('Sucess ', x), x => (console.log('Failure ', x), x))
         .process(x => console.log('Sucess callback ', x), err => console.log('Another chain error ', err));
+        
 </script>
 
 </html>

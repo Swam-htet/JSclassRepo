@@ -5,12 +5,18 @@
         age: 38,
     };
 
+    // simple requirement program
     const isValidAge = (obj) => age > 0 && age < 100;
+
+    // two limit currying functions
     const min = limit => value => value < limit;
     const max = limit => value => value > limit;
 
+    // two partial application function
     const greaterThan0 = max(0);
     const lessThan100 = min(100);
+
+
     console.log("Min ", lessThan100(50));
     console.log("Obj.age ", lessThan100(obj.age));
     console.log("Obj.age >0 ", greaterThan0(obj.age));
