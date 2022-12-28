@@ -1,0 +1,35 @@
+<html>
+<script>
+    // using function as constructor
+    function Human(name, age) {
+        console.log("This.constructor => ", this.constructor);
+        this.name = name;
+        this.age = age;
+
+        this.display = function () {
+            console.log("Name : ", this.name, " age : ", this, age);
+        }
+    }
+
+    let obj = new Human("Moe Moe", 23);
+    obj.display()
+
+    // checking the inheritance between class and object
+    console.log("Check the inheritance >> ", obj instanceof Human);
+    console.log("Check the inheritance >> ", obj instanceof Object);
+
+    //  true and true
+    // Human is derived from Object object, obj is derived from Human Constructor 
+
+
+    // prototype
+    console.log("Human.prototype >> " , Human.prototype);
+
+    // constructor
+    console.log("Human constructor >> " , Human.constructor);
+
+
+
+</script>
+
+</html>

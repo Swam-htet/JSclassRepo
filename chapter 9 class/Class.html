@@ -1,0 +1,39 @@
+<html>
+
+<script>
+    // parent class
+    class Human {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+            console.log('Human constructor called');
+        }
+        display() {
+            console.log(`Name ${this.name} Age ${this.age}`);
+        }
+        work() {
+            console.log(`Human work Name ${this.name} Age ${this.age}`);
+        }
+    }
+
+
+
+    // child class
+    class Teacher extends Human {
+        constructor(name, age, university) {
+            super(name, age);
+            this.university = university;
+            console.log('Teacher constructor called');
+        }
+        work() {
+            super.work();
+            console.log(`Teacher work Name ${this.name} Age ${this.age} University ${this.university}`);
+        }
+    }
+    let obj = new Teacher('TK', 38, 'Nowhere');
+    obj.display();
+    console.log('Obj ', obj);
+    obj.work();
+</script>
+
+</html>
