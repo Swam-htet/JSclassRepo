@@ -1,0 +1,34 @@
+<html>
+
+<script>
+    class Human {
+
+        // private property
+        #age = 0;
+        #name = '';
+
+        // constructor
+        constructor(name, age) {
+            this.#name = name;
+            this.#age = age;
+        }
+
+    }
+
+    // can use the private the property from existing class in outside adding method
+    Human.prototype.work = function()
+    {
+        console.log(`Name ${this.name} age ${this.age} work`);
+    }
+    
+
+    let obj = new Human('TK', 38);
+    // obj.age = 20;
+    //obj.#age = 200;
+    console.log('Obj ', obj);
+    // obj.work();
+
+
+</script>
+
+</html>
