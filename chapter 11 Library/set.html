@@ -1,0 +1,54 @@
+<html>
+
+<script>
+    let arr = [1, 2, 3, 1, 2, 1];
+
+    // using set object constructor
+    let set = new Set(arr);
+    console.log('Set ', set);
+
+    let unique = new Set("Mississippi");
+    console.log('Unique ', unique);
+
+    // length of the set 
+    console.log('Unique.size ', unique.size);
+
+    // adding new element to the set object
+    unique.add('k');
+    console.log('Unique ', unique);
+
+    // type of set 
+    console.log("Type of set unique is >>", typeof (unique));
+
+    // adding duplicate
+    unique.add('k');
+    console.log('Unique ', unique);
+
+
+    // delete the element 
+    unique.delete('i');
+    console.log('Unique ', unique);
+
+    // clear all of the element of the set
+    //unique.clear();
+    console.log('Unique ', unique);
+
+    // check the value is in set or not
+    // predigate function 
+    console.log('Unique.has("M") ', unique.has("M"));
+    console.log('Unique.has("i") ', unique.has("i"));
+
+    // iterable set
+    for (const p of unique) {
+        console.log('P ', p);
+    }
+
+    // distracture the set object to array
+    arr = [...unique];
+    console.log('Arr ', arr);
+
+    // for each like array 
+    unique.forEach(ch => console.log('Ch ', ch));
+</script>
+
+</html>

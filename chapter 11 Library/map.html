@@ -1,0 +1,62 @@
+<html>
+<script>
+    let obj = {
+        name: "swam htet",
+        age: 20,
+        job: "developer"
+    }
+
+    // obj .entires
+    console.log("Object.entries >> ", Object.entries(obj));
+
+    // save the array to variable
+    let input = Object.entries(obj);
+
+    // this object.entires array to map object 
+    // also called dictionary in other programming like PHP and python
+    let mapObj = new Map(input);
+
+    console.log("Map object >> ", mapObj);
+
+    // type of map object 
+    console.log("Type of map object >> ", typeof (mapObj));
+
+    // length of the map object 
+    console.log("Length of the map object >> ", mapObj.size);
+
+    // change the value of map object with  key
+    // if key is existed change it, else create new one
+    mapObj.set("something", "alphar");
+    console.log("Map object >> ", mapObj);
+
+    // taking out the value with key
+    console.log("Map object's name key value >> ", mapObj.get("name"));
+
+    // delete element to map object
+    mapObj.delete("name");
+    console.log("Map object >> ", mapObj);
+
+
+    // clear all of the element of the map object
+    // mapObj.clear();
+    // console.log("Map object >> ", mapObj);
+
+    // check the key with pradigate function
+    let condi = mapObj.has("job");
+    console.log("Exist of not >> ", condi);
+
+    // iteratable with for of
+    for ([key, value] of mapObj) {
+        console.log(`key: ${key} and value:${value}`);
+    }
+
+    // using .keys() , .values() and .entires() methods
+    console.log("Keys of map object >> ", ...mapObj.keys());
+    console.log("Values of map object >> ", ...mapObj.values());
+    console.log("Entries of map object >> ", ...mapObj.entries());
+
+    // using forEach method for iterate
+    mapObj.forEach((a, b) => console.log(a, b));
+</script>
+
+</html>
