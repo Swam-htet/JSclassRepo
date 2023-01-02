@@ -1,0 +1,27 @@
+<html>
+
+<script>
+
+    // now date
+    let now = new Date();
+    console.log('Current Date ', now);
+
+    // .getMonth() method of date time object
+    console.log('Get Month ', now.getMonth());
+
+    // creating new date and time object
+    let tomorrow = new Date(2023, 0, 2);
+    console.log('Tomorrow ', tomorrow);
+
+    // .getTime() method
+    console.log('GetTime ', tomorrow.getTime());
+
+    // assign time of object to variable
+    let time = tomorrow.getTime();
+
+    // assigning the time to another date time object
+    let another = new Date(time);
+    console.log('Another ', another);
+</script>
+
+</html>
