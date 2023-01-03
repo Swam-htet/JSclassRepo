@@ -1,14 +1,34 @@
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script>
-    let now = new moment(new Date());
-    let tomorrow = new moment(new Date(2023, 0, 3));
+    // now date time
+    let now = new Date();
+    console.log("Normal now >> ", now);
 
-    let day = tomorrow.diff(now, 'day');
-    console.log('Different ', day);
+    // now to moment
+    let momentNow = new moment(now);
+    console.log("Moment now >> ", momentNow);
+    console.log("Type of moment now >> ", typeof (momentNow));
 
-    let sevenDayAfterToday = now.day(7);
-    console.log('Next 7 day ', sevenDayAfterToday.toDate());
+    // birth date moment date time
+    let birth = new moment(new Date(2002, 0, 29));
+    console.log("my birth date >> ", birth);
+
+    // .format() method to format the moment date time
+    let formatBirth = birth.format();
+    console.log("After format, birth >> ", formatBirth);
+
+    formatBirth = birth.format('MMMM Do YYYY, h:mm:ss a');
+    console.log("mmmm do yyyy, h:mm:ss a >> ", formatBirth);
+
+    // birthday 
+    let birthday = new Date(2002, 0, 29);
+
+    // create moment with date.getTime()
+    birth = new moment(birthday.getTime());
+    console.log("Birthday with .getTime() >> ", birth.format("MMM Do YY"));
+
+    
 </script>
 
 </html>
