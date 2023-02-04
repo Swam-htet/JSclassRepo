@@ -1,0 +1,16 @@
+<html>
+<script>
+    // closure function 
+    function outer() {
+        let counter = 1;
+        return function inner() {
+            return counter++;
+        }
+    }
+    // variable << closure 
+    let value = outer();
+
+
+</script>
+
+</html>

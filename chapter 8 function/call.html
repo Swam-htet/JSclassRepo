@@ -1,0 +1,67 @@
+<html>
+<script>
+    let person = {
+        name: "Swam Htet",
+        age: 20,
+        job: "developer",
+        display() {
+            console.log(`Name:${this.name}\tage${this.age}\tjog:${this.job}`);
+        },
+
+        addAge(input) {
+            console.log(`Input >> ${input} result age ${this.age + input}`);
+        }
+    }
+
+    let god = {
+        name: "Zuses",
+        age: 20000,
+        job: "God level",
+        display() {
+            console.log(`${this.name} is a god.`);
+        },
+        addAge(input) {
+            console.log(`Input >> ${input} result age ${this.age + input}`);
+        }
+    }
+
+    // using method from object 
+    person.display();
+
+    // assigning method to variable 
+    let variable = person.display;
+
+    // run variable without call 
+    variable();
+
+    // with call 
+    variable.call(person, null);
+    // use-case >> call နဲ့ ငှားသုံးလို့ရတယ်
+
+    let variableSecond = person.addAge;
+
+    // normal without call 
+    variableSecond();
+
+    // with call 
+    variableSecond.call(person, 100);
+
+    // with apply 
+    variableSecond.apply(person, [200, 90]);
+
+    // with bind 
+    god.display();
+    let who = person.addAge.bind(god);
+    who(200);
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

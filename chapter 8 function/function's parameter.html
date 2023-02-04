@@ -1,0 +1,50 @@
+<html>
+<script>
+
+    // simple function 
+    function add(a, b) {
+
+        // what is arguments.callee.length 
+        console.log('This is argument.callee >> ', arguments.callee.length);
+        /*
+        if( arguments.callee.length != arguments.length)
+        {
+            console.warn('Function need ',arguments.callee.length, " but supplied ",arguments.length);
+            return 0;
+        }*/
+        return a + b;
+    }
+
+
+    // update the add function with functional programming 
+    let add2 = checkParameter(add);
+    console.log('Add.length ', add.length);
+    console.log('Add (1,2)', add2(1, 2));
+
+    // simple function to display 
+    function greet(msg) {
+        console.log('Hello ', msg);
+    }
+
+    // update the parameter function with checkParameter function with functional programming 
+    function checkParameter(func) {
+        return function () {
+            if (func.length != arguments.length) {
+                console.warn('Function ', func.name, 'need ', func.length, " parameter but supplied ", arguments.length);
+                return 0;
+            }
+            else {
+                return func.apply(null, arguments);
+            }
+        }
+    }
+
+    // update the display function 
+    let newGreet = checkParameter(greet);
+
+    // new function invocation 
+    newGreet();
+    newGreet('how are you');
+</script>
+
+</html>

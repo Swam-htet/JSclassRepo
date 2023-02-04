@@ -1,21 +1,22 @@
 <html>
-    <script>
-        let objectOne = {
-            name:"Swam Htet",
-            age:20,
-            running:function(){
-                console.log(`${this.name} is running.`);
-            }
+<script>
+    let objectOne = {
+        name: "Swam Htet",
+        age: 20,
+        running: function () {
+            console.log(`${this.name} is running.`);
         }
+    }
 
-        let JsonChange = JSON.stringify(objectOne);
-        console.log("Change to JSON string ==> ",JsonChange);
+    let JsonChange = JSON.stringify(objectOne);
+    console.log("Change to JSON string ==> ", JsonChange);
 
-        let toObject = JSON.parse(JsonChange);
-        console.log("Change to object again => ", toObject);
+    let toObject = JSON.parse(JsonChange);
+    console.log("Change to object again => ", toObject);
 
-        let outputObject = Object.assign(toObject,objectOne);
-        console.log("Using Object.assign => ",outputObject);
+    let outputObject = Object.assign(toObject, objectOne);
+    console.log("Using Object.assign => ", outputObject);
 
-    </script>
+</script>
+
 </html>

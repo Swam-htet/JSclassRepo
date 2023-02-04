@@ -1,18 +1,19 @@
 <html>
-    <script>
-        let objectOne = {
-            name:"Swam Htet",
-            age:20,
-            running:function(){
-                console.log(`${this.name} is running.`);
-            }
+<script>
+    let objectOne = {
+        name: "Swam Htet",
+        age: 20,
+        running: function () {
+            console.log(`${this.name} is running.`);
         }
+    }
 
-        console.log("Object One >> " , objectOne);
-        let objectTwo = {...objectOne};
+    console.log("Object One >> ", objectOne);
+    let objectTwo = { ...objectOne };
 
-        console.log("Obejct Two >> " , objectTwo);
+    console.log("Obejct Two >> ", objectTwo);
 
 
-    </script>
+</script>
+
 </html>

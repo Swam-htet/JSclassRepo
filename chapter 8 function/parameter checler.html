@@ -1,0 +1,27 @@
+<html>
+<script>
+    function display(a, b) {
+        console.log(`This is >> ${a} and This is >> ${b}`);
+    }
+
+    // parameter check function 
+    function checkPara(func) {
+        return function (a, b) {
+            if (func.length === arguments.length) {
+                func.call(null, a, b);
+            }
+            else {
+                console.error(`Invalid input, required -- ${arguments.length}, input -- ${func.length} `);
+            }
+        }
+    }
+
+    let newFunction = checkPara(display);
+
+    newFunction();
+    newFunction(20);
+
+    newFunction("Good", 2023)
+</script>
+
+</html>
