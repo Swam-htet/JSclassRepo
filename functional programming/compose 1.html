@@ -25,6 +25,7 @@
             return f(g(x));
         }
     }
+    
     const pipe = (f, g) => {
         return (x) => {
             return g(f(x));

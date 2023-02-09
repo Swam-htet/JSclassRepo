@@ -1,0 +1,62 @@
+<html>
+<script>
+
+    // number array sorting 
+    let comparator = (x, y) => x - y;
+    let arr = [10, 2, 4, 12, 100];
+    arr.sort(comparator);
+    console.log('Arr sort ', arr);
+
+    // array of object  
+    let humans = [
+        {
+            name: 'Mg Mg',
+            age: 32,
+        },
+        {
+            name: 'Aung Aung',
+            age: 15,
+        },
+        {
+            name: 'Hla Hla',
+            age: 40,
+        },
+    ];
+
+
+    // sort function 
+    // const sortBy = (property) => {
+    //     return (a,b) => {
+    //         let aProperty = a[property];
+    //         let bProperty = b[property];
+    //         if( aProperty === bProperty)
+    //         {
+    //             return 0;
+    //         }
+    //         else if( aProperty > bProperty)
+    //         {
+    //             return 1;
+    //         }
+    //         else
+    //         {
+    //             return -1;
+    //         }
+    //     }
+    // }
+
+
+    // functional programming predigate function 
+    const sortBy = (property) => {
+        return (a, b) => {
+            return (a[property] < b[property]) ? -1 : (a[property] > a[property]) ? 1 : 0;
+        }
+    }
+    humans.sort(sortBy('age'));
+    console.log('Humans ', humans);
+
+
+
+
+</script>
+
+</html>

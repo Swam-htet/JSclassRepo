@@ -1,0 +1,34 @@
+<html>
+<script>
+    let list = [20, 30, 4, NaN, "alphar"];
+
+    // arr for array and fun for predigate function 
+    let every = (arr, fun) => {
+        let result = true;
+        for (const i of arr) {
+            result = result && fun(i);
+
+        }
+        return result;
+
+    }
+
+    let some = (arr, fun) => {
+        let result = false;
+        for (const i of arr) {
+            result = result || fun(i);
+
+        }
+        return result;
+
+    }
+    let isString = a => typeof a == "string" ? true : false;
+
+    console.log("Own every >> ", every(list, isString));
+
+    console.log("Own some >> ", some(list, isString));
+
+    
+</script>
+
+</html>

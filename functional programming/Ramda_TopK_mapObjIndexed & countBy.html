@@ -21,17 +21,17 @@
         log,
         R.countBy(R.identity),
         log,
-        R.mapObjIndexed((value,key,object)=>[key,value]),
+        R.mapObjIndexed((value, key, object) => (console.log(object), [key, value])),
         log,
         R.values,
         log,
-        R.sort((a,b)=>b[1]-a[1]),
+        R.sort((a, b) => b[1] - a[1]),
         log,
         R.take(2),
         log,
-        R.map(a=>a[0])
+        R.map(a => a[0])
 
-        
+
     )
     console.log("This is testing with R.countBy() and R.mapObjIndexed(), Top K Frequence : ", topFrequcnceK(arr));
 

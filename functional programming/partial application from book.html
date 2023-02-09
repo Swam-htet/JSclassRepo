@@ -1,0 +1,17 @@
+<html>
+<script>
+
+
+    const setTimeoutWrapper = (time, fn) => {
+        setTimeout(fn, time);
+    }
+
+    const delayTenMs = curry(setTimeoutWrapper)(1000);
+    delay1000Ms(() => console.log("Do X task"));
+    delay1000Ms(() => console.log("Do Y task"));
+
+
+
+</script>
+
+</html>

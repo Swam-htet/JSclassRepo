@@ -1,0 +1,66 @@
+<html>
+<script>
+
+
+    let curry = (fn) => {
+        if (typeof fn !== 'function') {
+            throw Error('No function provided');
+        }
+        return function curriedFn(...args) {
+            if (args.length < fn.length) {
+                return function () {
+                    return curriedFn.apply(null, args.concat([].slice.call(arguments)));
+                };
+            }
+            return fn.apply(null, args);
+        };
+    };
+
+
+    // multi product function with currying 
+    let mutliple = (a, b, c) => a * b * c;
+    let newMulti = curry(mutliple);
+
+
+    // debugget logger 
+    const loggerHelper = (mode, initialMessage, errorMessage, lineNo) => {
+        if (mode === "DEBUG")
+            console.debug(initialMessage, errorMessage + "at line: " +
+                lineNo)
+        else if (mode === "ERROR")
+            console.error(initialMessage, errorMessage + "at line: " +
+                lineNo)
+        else if (mode === "WARN")
+            console.warn(initialMessage, errorMessage + "at line: " +
+                lineNo)
+        else
+            throw "Wrong mode"
+    }
+
+    let errorLogger = curry(loggerHelper)("ERROR")("Error At Stats.js");
+    let debugLogger = curry(loggerHelper)("DEBUG")("Debug At Stats.js");
+    let warnLogger = curry(loggerHelper)("WARN")("Warn At Stats.js");
+
+
+    errorLogger("This is error message")(30);
+    debugLogger("This is debug message")(30);
+    warnLogger("This is warn message")(30);
+
+    let match = curry(function (expr, str) {
+        return str.match(expr);
+    });
+
+    let hasNumber = match(/[0-9]+/);
+
+    let filter = curry(function (f, ary) {
+        return ary.filter(f);
+    });
+
+    let findNumbersInArray = filter(hasNumber);
+    let output = findNumbersInArray(["js", "number1"]);
+
+
+
+</script>
+
+</html>

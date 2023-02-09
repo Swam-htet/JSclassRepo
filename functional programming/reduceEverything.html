@@ -2,7 +2,10 @@
 <script>
     // using reduce like map
     let list = [1, 2, 3, 4, 5, 6]
+
     let power2 = a => a * a;
+
+    // creating own map with reduce 
     let mapList = list.reduce((arr, b) => {
         return arr.concat(power2(b))
     }, [])
@@ -12,6 +15,7 @@
     // using reduce like filter 
     let filterFun = (a) => a % 2 == 0;
 
+    // creating own reduce with reduce 
     let filterList = list.reduce((arr, b) => {
 
         // return filterFun(b) ? (arr.concat(b)) : arr;

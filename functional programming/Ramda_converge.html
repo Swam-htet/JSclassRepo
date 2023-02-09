@@ -11,10 +11,10 @@
     // tap currying testing 
     R.tap(console.log)("Hello world");
 
-    // list to sum, find avarage
+    // list to sum, find average
     let list = [10, 20, 30, 40, 0];
 
-    // in finding avarage of the array by using R.converge
+    // in finding average of the array by using R.converge
     const average = R.converge(R.divide, [R.sum, R.length]);
     console.log("Average of array : " + average(list));
 

@@ -1,0 +1,20 @@
+<html>
+<script src="https://cdn.jsdelivr.net/npm/ramda@0.27.1/dist/ramda.min.js"></script>
+
+<script>
+
+    // normal solution
+    let arr = [2, 2, 3, 4, 5, 3, 2, 2, 3, 4, 3, 3, 1, 1, 1, 2, 1, 1, 2, 3, 4, 5, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, , 1, 2, 3, 2, 1, 1, 1, 2, 3, 4, 5, 5, 5]
+    let result = R.map(a => a[0])(R.take(2)(R.sort((a, b) => b[1] - a[1])(R.values(R.map(a => [a[0], a.length])(R.groupBy(R.identity)(arr))))));
+
+    console.log(("This is result >> ", result));
+
+
+    // using pipe 
+    let c = 3;
+    result = R.pipe(R.groupBy(R.identity),R.map((a) => [a[0], a.length]),R.values,R.sort((a, b) => b[1] - a[c]),R.take(2),R.map(a => a[0]))(arr)
+
+
+</script>
+
+</html>
