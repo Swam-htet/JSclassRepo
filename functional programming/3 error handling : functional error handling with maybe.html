@@ -9,13 +9,12 @@
                 } else {
                     reject(new Error("Reject Error!"));
                 }
-
             }, 2000);
-
         })
     }
 
-    checkAsync(1).then(data => console.log(data), e => console.log(e));
+    checkAsync(100).then(data => console.log(data), e => console.info(e));
+    
 </script>
 
 </html>

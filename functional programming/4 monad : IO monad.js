@@ -7,11 +7,9 @@ class IO {
     run() {
         return this.fn();
     }
-
     map(fn) {
         return new IO(() => fn(this.run()))
     }
-
     bind(fn) {
         return new IO(() => fn(this.run()).run())
     }

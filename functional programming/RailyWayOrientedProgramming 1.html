@@ -1,8 +1,10 @@
 <html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+
 <script>
 
 
-    //sad path    
+    //fail path    
     const Left = (value) => ({
         map() {
             return Left.of(value);
@@ -26,7 +28,7 @@
 
 
 
-
+    // success path
     const Right = (value) => ({
         val() {
             return value;
@@ -36,13 +38,7 @@
         },
         join() {
             //console.log("This case ",value);
-            if ((value instanceof Left) ||
-                (value instanceof Right)) {
-
-                return value;
-            } else {
-                return Right.of(value);
-            }
+            ((value instanceof Left) || (value instanceof Right)) ? value : Right.of(value);
         },
         flatmap(fn) {
             return fn(value);
@@ -55,11 +51,15 @@
         toString: () => `Right(${value})`
     });
     Right.of = value => Right(value);
-    
-    console.log("Left ", Left.of(3).map().toString());
-    console.log("Right >>", Right.of(3).map(x => x + 1).val());
 
-    console.log(Right.of(Left.of(3)).map(x => x + 1).join().toString());
+
+
+    // normal left and right 
+    console.log("Left >> ", Left.of(3).map().val());
+    console.log("Right >> ", Right.of(3).map(x => x + 1).val());
+
+
+    console.log(Right.of(Left.of(3)).map(x => x + 1).toString());
     console.log("Right 3 ,map, flat map >> ", Right.of(3).map(x => x + 1).flatmap(x => x + 4));
 
     let monadFunc = Right.of(x => x + 1);

@@ -1,0 +1,113 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+
+    // fold = list.reduce function 
+    var fold = function (array, monoid) {
+        // empty to initial value , then initial value to accumulator of the fold method 
+        let initialValue = monoid.empty();
+        let accumulator = initialValue;
+
+        // loop the list list 
+        for (let i = 0; i < array.length; i++) {
+            // current value 
+            const element = array[i];
+            // do operation 
+            accumulator = monoid.concat(accumulator, element) // abstracted +
+        }
+
+        // return accumulator 
+        return accumulator;
+    }
+
+    // monoid in function form 
+    let Monoid = function (fn) {
+        return ({
+            empty: () => 0,
+            concat: fn,
+        })
+    }
+
+    // sample monoids
+    // + monoid 
+    let Sum = {
+        empty: () => 0,
+        concat: (a, b) => a + b
+    };
+
+    // * modoid in object form 
+    let Multi = {
+        empty: () => 1,
+        concat: (a, b) => a * b
+    };
+
+    // max monoid 
+    let Max = {
+        empty: () => -Infinity,
+        concat: (a, b) => a > b ? a : b,
+    };
+
+    // Min Monoid 
+    let Min = {
+        empty: () => Infinity,
+        concat: (a, b) => a < b ? a : b,
+    };
+
+    // monoid in class form 
+    class SUM {
+
+        constructor(v) {
+            this.v = v;
+        }
+
+        static empty() {
+            return new Sum(0);
+        }
+
+        concat(b) {
+            return new Sum(this.v + b.v);
+        }
+    };
+
+    var reduce = [1, 2, 3, 4, 5, 6]
+        .map(x => new Sum(x))
+        .reduce((a, b) => a.concat(b), Sum.empty());
+
+
+    let list = [10, 20, 45, 65];
+    list = [1, 2, 4, 5, 6];
+    // let list = [];
+
+    // by using array.reduce()
+    // (callback,initial value)   => (monoid.concat,monoid.empty())
+    let result = list.reduce(Sum.concat, Sum.empty());
+
+    console.log("This is SUM monoid result => ", result);
+
+    result = list.reduce(Max.concat, Max.empty());
+    console.log("This is MAX monoid result => ", result);
+
+    result = list.reduce(Min.concat, Min.empty());
+    console.log("This is MIN monoid result => ", result);
+
+    result = list.reduce(Multi.concat, Multi.empty());
+    console.log("This is Multi monoid result => ", result);
+
+
+    // by using Flod instead of list.reduce 
+    result = fold(list, Max);
+    console.log("This is MAX monoid from fold result >> ", result);
+
+    result = fold(list, Min);
+    console.log("This is MIN monoid from fold result >> ", result);
+
+    result = fold(list, Sum);
+    console.log("This is SUM monoid from fold result >> ", result);
+
+    result = fold(list, Multi);
+    console.log("This is MULTI monoid from fold result >> ", result);
+
+
+</script>
+
+</html>

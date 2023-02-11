@@ -2,20 +2,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
 <script>
     
+    // async error throw function 
     function asynchronousError() {
         setTimeout(() => {
             throw Error("This is asynchronous error")
         }, 2000);
     }
 
+    // try 
     try{
+        // invoking the erro throw function 
         asynchronousError();
     }
+    // catch the async error 
     catch(e){
+        // catch error and log error 
         console.log("This is error => " , e);
     }
 
-    
+    // final output
     console.log("This is output after all.");
 
 

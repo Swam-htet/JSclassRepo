@@ -16,35 +16,38 @@
     const inc = (x) => [x + 1, `inc called with ${x}`];
     const double = (x) => [x * 2, `double called with ${x}`];
 
+    // distructure the function return 
     let [result, logStr] = inc(10);
     console.log('Result ', result, logStr);
 
+    // check for compose 
     let newFunc = compose(double, inc);
     console.log('NewFunc ', newFunc(10));
 
 
-    
+    // composible function for debug functions
     let composeDebuggable = (f, g) => x => {
         let [result, logStr] = g(x);
         let [result2, logStr2] = f(result);
-
         return [result2, logStr + ', ' + logStr2];
     }
     newFunc = composeDebuggable(double, inc);
-    console.log('composeDebuggable ', newFunc(10));
+    console.log('composeDebugable ', newFunc(10));
 
 
 
+    // bind function for debug function
     const bind = (f) => function (tuple) {
         const [result, log1] = tuple,
         [result2, log2] = f(result);
         return [result2, log1 + ', ' + log2];
     };
-    
-    let newFunctionWithTuple = compose(bind(inc), bind(double));
+
+    // for input 
     let unit = (x) => [x, ''];
-    let finalFunc = compose(newFunctionWithTuple, unit);
-    //console.log("newFunctionWithTuple ",newFunctionWithTuple(unit(10)));
+
+    //
+    let finalFunc = R.compose(bind(inc), bind(double),unit);
     console.log('FinalFunc ', finalFunc(10));
 </script>
 

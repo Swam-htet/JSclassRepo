@@ -6,20 +6,25 @@
         return ({
             value: v,
             map: (fn) => Functor(fn(v)),
-            valueOf: () => v,
+            valueOf: () => this.value,
         });
     }
 
     Functor.of = (a) => Functor(a);
 
     // rule one 
+
+    // functor creation with .of method 
     const value = Functor.of(10);
+
+    // result functor method 
     console.log("This is value => ", value);
 
+    // maping with identity function 
     const ityValue = Functor.of(10).map(R.identity);
     console.log("This is the value of identity return => ", ityValue);
 
-    // check the value of normal return object and indentity return
+    // check the value of normal return object and identity function return
     console.log("This is rule 1 => ", value.value == ityValue.value);
 
 

@@ -14,11 +14,13 @@
             value: v,
             valueOf: () => v,
             map: function (fn) {
+                // whatever return nothing object 
                 return this;
             }
         })
     }
     Nothing.of = (v) => Nothing(v);
+
 
     // Some functor
     function Some(v) {
@@ -26,11 +28,13 @@
             value: v,
             valueOf: () => v,
             map: function (fn) {
+                // normal functor method 
                 return Some(fn(v));
             }
         });
     }
     Some.of = (v) => Some(v);
+
 
     // nothing 
     let nothing = Nothing.of('hello').map(toUpper);
@@ -40,31 +44,34 @@
     let something = Some.of('hello').map(toUpper);
     console.log('Something ', something);
 
-    // either 
-    // const Either = {
-    //     Some: Some,
-    //     Nothing: Nothing
-    // }
+    /*
+        either 
+        const Either = {
+            Some: Some,
+            Nothing: Nothing
+        }
+    
+        either function 
+    
+        const Either = {
+            Some: (v) => ({
+                value: v,
+                valueOf: () => v,
+                map: function (fn) {
+                    return Some(fn(v));
+                },
+            }),
+            Nothing: (v) => ({
+                value: v,
+                valueOf: () => v,
+                map: function (fn) {
+                    return Nothing(v);
+                },
+            })
+    
+        }
+    */
 
-    // either function 
-
-    // const Either = {
-    //     Some: (v) => ({
-    //         value: v,
-    //         valueOf: () => v,
-    //         map: function (fn) {
-    //             return Some(fn(v));
-    //         },
-    //     }),
-    //     Nothing: (v) => ({
-    //         value: v,
-    //         valueOf: () => v,
-    //         map: function (fn) {
-    //             return Nothing(v);
-    //         },
-    //     })
-
-    // }
 
     function div(a, b) {
         if (a == 0 && b == 0) {
@@ -73,9 +80,9 @@
             return Some.of(a / b);
         }
     }
-    let incOne = (x) => x + 1;
 
-    let result = div(0, 0).map(incOne);
+    // for nothing condition do nothing 
+    let result = div(0, 0).map(R.add(100)).value;
 
     console.log('Result ', result);
 </script>

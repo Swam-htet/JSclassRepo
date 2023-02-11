@@ -5,18 +5,25 @@
     const inc = (x) => x + 1;
     const double = (x) => x * 2;
 
+
+    // writer monad in class form 
     class Writer {
+        // constructor
         constructor(value, log) {
             this.value = value;
             this.log = log;
         }
-        static of (empty) {
+
+        // pointed functor 
+        static of(empty) {
             return (value) => new Writer(value, empty);
         }
+        // normal map method >> update only value of the monad object 
         map(fn) {
             return new Writer(fn(this.value), this.log);
         }
 
+        // flatMap method like compose bind method show in monad logic.html
         //fn->moandic function
         flatMap(fn) {
             const {
@@ -28,6 +35,7 @@
         }
     }
 
+    // unit method 
     const unit = Writer.of('');
 
     let counter = unit(3);
@@ -49,11 +57,10 @@
     const add8 = (a) => Writer.of('added 8, ')(a + 8);
 
 
-
+    // normal monad object / value 1 log Initial one 
     const theOne = new Writer(1, 'Initial One, ');
 
-
-
+    // doing flatmap with monadic function 
     result = theOne.flatMap(add5).flatMap(add8);
 
     console.log('Result ', result);

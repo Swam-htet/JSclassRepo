@@ -1,0 +1,88 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.28.0/ramda.js"></script>
+<script>
+
+    // applicative functor in class form ----------------------------------------------------------
+
+    class Container {
+
+        // constructor
+        constructor(val) {
+            this._value = val;
+        }
+
+        // of
+        static of(val) {
+            return new Container(val);
+        }
+
+        // map
+        map(fn) {
+            return new Container(fn(this._value));
+        }
+
+        // applicative
+        ap(c) {
+            return c.map(fn => this.map(fn));
+        }
+
+        // valueOf
+        value() {
+            return this._value;
+        }
+    }
+
+
+    // value function => applicative functor 
+    let functionContainer = Container.of(200).map(R.add);
+    console.log("This is function container => ", functionContainer);
+
+
+    // formal value functor 
+    let numberContainer = Container.of(20);
+    console.log("This is number container => ", numberContainer);
+
+    let result = numberContainer.ap(functionContainer);
+    console.log("This is result container >>  , ", result.valueOf());
+
+
+    
+    // applicative functor in function form ------------------------------------------------
+
+    function Applicative(v) {
+        return ({
+            value: v,
+            valueOf: () => v,
+            map: (fn) => {
+                return Applicative(fn(v));
+            },
+            orElse: (defaultValue) => {
+                return Applicative(defaultValue);
+            },
+            ap: c => {
+                // return c.map(fn => this._value.map(fn));
+                return this.value.map(c.value);
+
+            }
+        })
+    }
+    Applicative.of = (v) => Applicative(v);
+
+    numberContainer = Applicative.of(20);
+    console.log("This is number container >> ", numberContainer);
+
+    functionContainer = Applicative.of(200).map(R.add);
+    console.log("This is function container >> ", functionContainer);
+
+    result = numberContainer.ap(functionContainer);
+    console.log("This is the result container >> ", result);
+
+    
+
+
+
+
+
+</script>
+
+</html>
