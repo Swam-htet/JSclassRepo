@@ -1,0 +1,24 @@
+<html>
+<script>
+
+    // class in expression
+    let Test = class {
+        constructor(value) {
+            this.value = value;
+        }
+    }
+
+    // creating object with class 
+    const obj = new Test(20);
+    console.log("Test class in expression >> ", obj);
+
+    // assign the class to another variable like function first class 
+    let AnotherTesting = Test;
+    
+    // creating object with clone class 
+    let anotherObject = new AnotherTesting(300);
+    console.log("This is clone class >> " , anotherObject.value);
+
+</script>
+
+</html>

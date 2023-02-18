@@ -1,11 +1,12 @@
 <html>
 
 <script>
+    // main class 
     class Human {
         constructor(name, age) {
             this.name = name;
             this.age = age;
-            console.log('Human Constuctor called');
+            console.log('Human constructor called');
         }
         display() {
             console.log(`Name ${this.name} Age ${this.age}`);
@@ -14,13 +15,18 @@
             console.log(`Human work Name ${this.name} Age ${this.age}`);
         }
     }
+
+    // use class composition more than class extends 
     class Teacher {
         constructor(name, age, university) {
+
+            // class composition for constructor
             this.human = new Human(name, age);
             this.university = university;
             console.log('Teacher Constuctor called');
         }
         work() {
+            // class composition for method
             this.human.work();
             console.log(`Teacher work Name ${this.name} Age ${this.age} University ${this.university}`);
         }

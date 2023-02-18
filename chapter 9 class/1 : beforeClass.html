@@ -7,16 +7,28 @@
         this.age = age;
 
         this.display = function () {
-            console.log("Name : ", this.name, " age : ", this, age);
+            console.log("Name : ", this.name, " age : ", this.age);
         }
     }
 
-    let obj = new Human("Moe Moe", 23);
+    // need to invoke with new keyword 
+    let objOne = new Human("Moe Moe", 23);
+
+    let objTwo = Human("Soe Soe",)
+
+
+
+    // without new, this က ပါမလာတော့ဘူး 
     obj.display()
 
     // checking the inheritance between class and object
     console.log("Check the inheritance >> ", obj instanceof Human);
+
+    // also inheritance from Object object 
     console.log("Check the inheritance >> ", obj instanceof Object);
+
+
+    
 
     //  true and true
     // Human is derived from Object object, obj is derived from Human Constructor 

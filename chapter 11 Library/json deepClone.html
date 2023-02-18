@@ -1,0 +1,49 @@
+<html>
+<script>
+    let person = {
+        name: "Swam Htet",
+        age: 20,
+        display() {
+            console.log(`Name >> ${this.name} and age >> ${this.age}`);
+        },
+        salary: 20000,
+        toJSON() {
+            let that = this;
+            return {
+                name: that.name,
+                age: that.age,
+                salary: undefined,
+                job: "Developer",
+            }
+        }
+    }
+
+    // deep clone >> output object separately with original object 
+    let clonePerson = JSON.parse(JSON.stringify(person));
+
+
+
+    // custom json parse 
+    person = {
+        name: "Swam Htet",
+        age: 21,
+        job: "student",
+    }
+
+    // filtering the properties in json serializing 
+    let jsonString = JSON.stringify(person, ["name", "age"]);
+    console.log("This is filter output >> ", jsonString);
+
+    let output = JSON.parse(jsonString, function (key, value) {
+        if (typeof value == 'string') {
+            value = value.toUpperCase();
+        }
+        return value;
+
+    });
+    console.log("custom output >> ", output);
+
+    
+</script>
+
+</html>

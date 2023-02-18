@@ -20,20 +20,30 @@
 
     // child class
     class Teacher extends Human {
+
+        // constructor overwriting 
         constructor(name, age, university) {
+            // using super for inheritance 
             super(name, age);
             this.university = university;
             console.log('Teacher constructor called');
         }
+
+        // method overwriting 
         work() {
             super.work();
             console.log(`Teacher work Name ${this.name} Age ${this.age} University ${this.university}`);
         }
     }
+
+    // object creation with class 
     let obj = new Teacher('TK', 38, 'Nowhere');
+
+    // using property and method 
     obj.display();
     console.log('Obj ', obj);
     obj.work();
+    
 </script>
 
 </html>

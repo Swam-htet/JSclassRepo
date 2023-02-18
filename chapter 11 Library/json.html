@@ -1,0 +1,22 @@
+<html>
+<script>
+    let person = {
+        name: "Swam Htet",
+        age: 20,
+        display() {
+            console.log(`Name >> ${this.name} and age >> ${this.age}`);
+        },
+        salary: 20000,
+        toJSON() {
+            let that = this;
+            return {
+                name: that.name,
+                age: that.age,
+                salary: undefined,
+                job: "Developer",
+            }
+        }
+    }
+</script>
+
+</html>

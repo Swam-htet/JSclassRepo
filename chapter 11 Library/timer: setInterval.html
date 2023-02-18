@@ -1,0 +1,28 @@
+<html>
+<div>
+    <h1 id="date_label"></h1>
+</div>
+
+<button type="button" id="btn">Kill Timer</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+<script>
+    let dateLabel = document.getElementById("date_label");
+
+    display = () => {
+        console.count("Show date");
+        dateLabel.innerHTML = "Now : " + moment().format('h:mm:ss a');
+
+    }
+
+    // do the function every 1 second 
+    let timer = setInterval(display, 1000);
+
+    document.getElementById("btn").addEventListener("click", () => {
+        clearInterval(timer);
+    })
+
+
+</script>
+
+</html>

@@ -2,10 +2,13 @@
 
 <script>
     //http://www.google.com
+    let check = /(\w+):\/\/([\w.]+)\/(\S*)/;
+
     let url = /(\w+):\/\/([\w.]+)\/(\S*)/;
     let text = "Visit my blog at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet";
     let match = text.match(url);
     console.log("URL >> ", match);
+    
     let fullurl, protocol, host, path;
     if (match !== null) {
         fullurl = match[0]; // fullurl == "http://www.example.com/~david"
