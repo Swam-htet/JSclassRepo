@@ -1,0 +1,61 @@
+<html>
+<script>
+
+    // sample object 
+    let person = {
+        name: "Swaam Htet",
+        age: 21,
+
+    }
+
+    Object.defineProperty(person, 'address', {
+        value: "Somewhere",
+        enumerable: true,
+        writable: false,
+        configurable: false,
+    });
+
+
+
+    console.log("Original person >> ", person);
+
+    // not updatable 
+    person.name = "alphar";
+    console.log("After updating >> ", person);
+
+    // enumerable 
+    for (let i in person) console.log(i);
+
+    // configurable 
+    delete person.name;
+
+    let objectOne = {
+        name: "something",
+        price: 300,
+
+    }
+
+    Object.defineProperty(objectOne, "name", {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+
+    });
+
+    Object.defineProperty(objectOne, "location", {
+        get() {
+            console.log("Get is called");
+            return 'somewhere in storage';
+        },
+        set(v) {
+            console.log("set is called");
+            value = v;
+        }
+    })
+
+
+
+
+</script>
+
+</html>

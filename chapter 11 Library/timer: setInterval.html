@@ -18,6 +18,7 @@
     // do the function every 1 second 
     let timer = setInterval(display, 1000);
 
+    // clear interval by using add event listener method 
     document.getElementById("btn").addEventListener("click", () => {
         clearInterval(timer);
     })

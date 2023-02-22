@@ -7,5 +7,6 @@ runAsync = (fn) => {
 };
 
 console.log("Before running");
+
 runAsync(data => console.log("This is using call back >> ", data));
 console.log("After running");

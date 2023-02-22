@@ -1,0 +1,73 @@
+<html>
+
+<body>
+    <div class="header">
+        <h3 class="header">Name</h3>
+        <span id="id_name"></span>
+
+        <hr>
+
+        <h3 class="header">Age</h3>
+        <span id="id_age"></span>
+    </div>
+</body>
+<script>
+    // main model object 
+    let person = {
+        name: "Swam Htet",
+        age: 21,
+    }
+
+    // render callback funcion 
+    function render(obj) {
+        document.getElementById("id_name").innerText = obj.name;
+        document.getElementById("id_age").innerText = obj.age;
+
+    }
+
+    // load render 
+    render(person);
+
+    // mvc 
+    function mvc(model, callback) {
+
+        // create new model object 
+        let newModel = {};
+
+        // copy all of the properties from model to new model with __ in front of property 
+        for (let p in model) {
+
+            // clone property 
+            Object.defineProperty(newModel, "__" + p, {
+                value: model[p],
+                writable: true,
+                
+            });
+
+
+            // create getter and setter for required properties 
+            Object.defineProperty(newModel, p, {
+                get() {
+                    // console.log("Getter called for >> ", p);
+                    return newModel["__" + p];
+                },
+                set(v) {
+                    // console.log("Setter called for >> ", p);
+                    newModel["__" + p] = v;
+                    callback(newModel);
+                }
+            })
+
+
+        }
+
+        // return new model 
+        return newModel;
+    }
+
+    let newModel = mvc(person, render);
+    console.log("New Model >> ", newModel);
+
+</script>
+
+</html>

@@ -8,6 +8,7 @@ let run = () => {
 };
 
 console.log("Before run");
+
 run()
   .then((data) =>
     console.log("Return promise data from run function >> ", data)

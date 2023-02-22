@@ -1,0 +1,40 @@
+<html>
+<script>
+    let objectOne = {
+        name: "one",
+    }
+    let ObjectTwo = {
+        age: 20,
+    }
+
+    let obj = {
+        name: "TK",
+        age: null
+    };
+    let another = {
+        address: 'Something',
+        otherFiled: null,
+    }
+
+    // null validation function 
+    function validate(obj) {
+        let errors = [];
+        for (let p in obj) {
+            if (obj[p] === null) {
+                errors.push('Property ' + p + ' is null');
+            }
+        }
+        return errors;
+    }
+
+
+    let err = validate(obj);
+    console.log('Err ', err);
+
+    err = validate(another);
+    console.log('Err ', err);
+
+
+</script>
+
+</html>
