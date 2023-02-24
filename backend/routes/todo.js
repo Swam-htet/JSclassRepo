@@ -4,17 +4,25 @@ var router = express.Router();
 
 var todo = require("./../controller/todoController");
 
-// normal get
-router.get("/", todo.todo_normal);
+// todo get all
+router.get("/", todo.getall_todo);
 
-// to do log request
-router.get("/check", todo.todo_reqCheck);
+// todo create
+router.post("/", todo.create_todo);
 
-// post with value
-router.post("/", todo.todo_post);
 
-// to do get id
-// router.get("/:todoID", todo.todo_id);
+// todo get complete=true
+router.get("/complete", todo.get_todo_complete);
+
+// todo get id
+router.get("/:id", todo.get_todo_id);
+
+
+// todo update id
+router.post("/:id", todo.update_todo);
+
+// todo delete
+router.delete("/:id", todo.delete_todo);
 
 // to do multiple route
 router.get("/multiple", todo.todo_multipleFirst);

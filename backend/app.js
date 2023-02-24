@@ -5,6 +5,13 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
+// mongoDB connection 
+var mongoose = require("mongoose");
+var {db} = require('./config/database');
+
+// cors module import
+var cors = require("cors");
+
 // node module for route
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -17,12 +24,21 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
+// cors use
+app.use(cors());
+
 // middle-ware
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+// mongoDB connection
+mongoose.connect(db,{
+  useNewUrlParser:true,
+  useUnifiedTopology:true
+}).then(()=>console.log("MongoDB connected.")).catch(err=>console.log(err))
 
 // route register
 app.use("/", indexRouter);
