@@ -1,4 +1,4 @@
-let Todos = require("./../model/Todo");
+let Todos = require("../model/Todo");
 
 // get all todo service
 async function getAll_todo() {

@@ -30,7 +30,7 @@ async function get_todo_id(req, res, next) {
   }
 }
 
-// get
+// get complete
 async function get_todo_complete(req, res, next) {
   console.log("Get complete = true todo");
   let todos = await todoService.get_todo_complete();
@@ -38,7 +38,7 @@ async function get_todo_complete(req, res, next) {
   res.status(200).json(todos);
 }
 
-// post with value
+// create todo
 async function create_todo(req, res, next) {
   console.log("Create todo", req.body);
   try {
@@ -73,6 +73,8 @@ async function update_todo(req, res, next) {
   }
 }
 
+
+// delete todo
 async function delete_todo(req, res, next) {
   let id = req.params["id"];
   console.log("Update todo ID: ", id);

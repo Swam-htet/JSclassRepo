@@ -5,17 +5,24 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-// mongoDB connection 
+// auth middleware import
+var auth = require("./middleware/auth");
+
+// mongoDB connection
 var mongoose = require("mongoose");
-var {db} = require('./config/database');
+
+// db connection string
+var { db } = require("./config/database");
 
 // cors module import
 var cors = require("cors");
 
 // node module for route
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 var todoRouter = require("./routes/todo");
+var movieRouter = require("./routes/movie");
+var reviewRouter = require("./routes/review");
+var userRouter = require("./routes/users");
 
 // install express framework
 var app = express();
@@ -35,15 +42,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // mongoDB connection
-mongoose.connect(db,{
-  useNewUrlParser:true,
-  useUnifiedTopology:true
-}).then(()=>console.log("MongoDB connected.")).catch(err=>console.log(err))
+mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected."))
+  .catch((err) => console.log(err));
 
 // route register
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/api/todos", todoRouter);
+app.use("/api/users", userRouter);
+
+// auth checking with auth middleware
+app.use("/api/movies", auth.verifyUserToken, movieRouter);
+app.use("/api/reviews", auth.verifyUserToken, reviewRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
