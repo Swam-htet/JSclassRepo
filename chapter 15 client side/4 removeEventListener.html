@@ -1,0 +1,48 @@
+<html>
+
+<style>
+    #one {
+        background-color: orange;
+        width: 100px;
+        height: 100px;
+    }
+
+    #two {
+        background-color: yellow;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <button id="one">
+        Click One
+    </button>
+
+    <button id="two">
+        Click Two
+    </button>
+</body>
+<script>
+    function handlerOne(e) {
+        console.log("This is one");
+
+    }
+    let one = document.getElementById("one");
+    one.addEventListener("click", handlerOne);
+
+
+    function handlerTwo(e) {
+        console.log("This is two");
+        one.removeEventListener("click", handlerOne);
+        console.log("One's event click is removed");
+
+    }
+    let two = document.getElementById("two");
+    two.addEventListener("click", handlerTwo);
+
+
+
+</script>
+
+</html>

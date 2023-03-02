@@ -1,0 +1,33 @@
+<html>
+
+<style>
+    #parent {
+        background-color: orange;
+        width: 200px;
+        height: 200px;
+    }
+</style>
+
+<body>
+    <div id="parent">
+        <div id="child">
+            <div id="grand-child"></div>
+        </div>
+    </div>
+</body>
+<script>
+    let parent = document.getElementById("parent");
+    parent.addEventListener("click", function (e) {
+        console.log(e);
+        console.log("Parent One");
+        // console.log("This is parent click >> ", this == e.target);
+    });
+
+    parent.addEventListener("click", function (e) {
+        console.log(e);
+        console.log("Parent Two");
+        // console.log("This is parent click >> ", this == e.target);
+    });
+</script>
+
+</html>

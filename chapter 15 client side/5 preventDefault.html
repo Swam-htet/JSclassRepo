@@ -1,0 +1,23 @@
+<html>
+<style>
+    body {
+        background-color: orange;
+    }
+</style>
+
+<body>
+    <h1>This is body</h1>
+</body>
+<script>
+
+    document.body.addEventListener("contextmenu", function (e) {
+        // prevent default 
+        e.preventDefault();
+        console.log("body right click ", e);
+        console.log("Is body click ", this == e.target);
+    });
+
+
+</script>
+
+</html>

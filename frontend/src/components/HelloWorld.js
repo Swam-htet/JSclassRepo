@@ -1,9 +1,8 @@
-function helloworld() {
-  return (
-    <div>
-        <h1>Hello world</h1>
-    </div>
-  );
+// helloworld function component
+function HelloWorld() {
+  return <div>
+    <h1>Hello world</h1>
+  </div>;
 }
 
-export default helloworld;
+export default HelloWorld;

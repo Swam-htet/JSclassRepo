@@ -1,0 +1,9 @@
+.class-component{
+    background-color: orange;
+    min-width: 200px;
+    min-height: 200px;
+}
+
+.photo{
+    border-radius: 10px;
+}

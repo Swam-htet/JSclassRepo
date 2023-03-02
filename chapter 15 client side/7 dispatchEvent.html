@@ -1,0 +1,45 @@
+<html>
+
+<style>
+    #one {
+        background-color: orange;
+        width: 100px;
+        height: 100px;
+    }
+
+    #two {
+        background-color: yellow;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <button id="one">
+        Click One
+    </button>
+
+    <button id="two">
+        Click Two
+    </button>
+</body>
+<script>
+    function handlerOne(e) {
+        console.log("This is one");
+    }
+    document.getElementById("one").addEventListener("click", handlerOne);
+
+
+    function handlerTwo(e) {
+        console.log("This is two");
+        one.dispatchEvent(new Event("click"));
+
+    }
+    let two = document.getElementById("two");
+    two.addEventListener("click", handlerTwo);
+
+
+
+</script>
+
+</html>

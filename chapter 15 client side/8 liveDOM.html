@@ -1,0 +1,30 @@
+<html>
+<style>
+
+</style>
+
+<body>
+    <div>Box
+        <button class="btn btn-danger">Click Here</button>
+    </div>
+    <div>Box</div>
+</body>
+<script>
+    let boxs = document.getElementsByTagName("div");
+    // wrong looping
+    // for (let i = 0; i < boxs.length; i++) {
+    //     let newBox = document.createElement("div");
+    //     document.body.appendChild(newBox);
+
+    // }
+
+    // looping for live DOM => html collection
+    for (let i = 0, len = boxs.length; i < len; i++) {
+        let newBox = document.createElement("div");
+        document.body.appendChild(newBox);
+
+    }
+
+</script>
+
+</html>
