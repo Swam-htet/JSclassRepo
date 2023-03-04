@@ -6,19 +6,19 @@ var review = require("./../controller/ReviewController");
 router.get("/", review.getAllReview);
 
 // get review by movie id  
-router.get("/movie/:movieId", review.getReviewByMovieId);
+router.get("/movie/:id", review.getReviewByMovieID);
 
 // get by review id 
-router.get("/:reviewId", review.getReviewById);
+router.get("/:id", review.getReviewByID);
 
 // create review 
-router.post("/", review.saveReview);
+router.post("/", review.createReview);
 
 // update review with review id 
-router.put("/:reviewId", review.updateReview);
+router.put("/:id", review.updateReviewByID);
 
 // delete review with review id 
-router.delete("/:reviewId", review.deleteReview);
+router.delete("/:id", review.deleteReviewByID);
 
 
 module.exports = router;

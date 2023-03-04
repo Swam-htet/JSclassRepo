@@ -12,7 +12,7 @@ var auth = require("./middleware/auth");
 var mongoose = require("mongoose");
 
 // db connection string
-var { db } = require("./config/database");
+var {db} = require("./config/database");
 
 // cors module import
 var cors = require("cors");
@@ -37,18 +37,18 @@ app.use(cors());
 // middle-ware
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // mongoDB connection
 mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB connected."))
-  .catch((err) => console.log(err));
+    .connect(db, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => console.log("MongoDB connected."))
+    .catch((err) => console.log(err));
 
 // route register
 app.use("/", indexRouter);
@@ -56,23 +56,23 @@ app.use("/api/todos", todoRouter);
 app.use("/api/users", userRouter);
 
 // auth checking with auth middleware
-app.use("/api/movies", auth.verifyUserToken, movieRouter);
-app.use("/api/reviews", auth.verifyUserToken, reviewRouter);
+app.use("/api/movies", movieRouter);
+app.use("/api/reviews", reviewRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+    // render the error page
+    res.status(err.status || 500);
+    res.render("error");
 });
 
 module.exports = app;
