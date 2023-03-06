@@ -10,12 +10,13 @@ router.get("/", function (req, res, next) {
   res.send("respond with a resource");
 });
 
-router.post("/", users.registerUser);
 
 // get by user id
-router.get("/:userId", users.getUserById);
+// router.get("/:userId", users.getUserById);
 
-// create new user
+// new user register
+router.post("/", users.register);
+
 
 // user login
 router.post("/login", users.login);

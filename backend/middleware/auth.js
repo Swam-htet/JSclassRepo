@@ -7,11 +7,13 @@ const { config } = require("./../config/Config");
 
 // verify moddleware function
 const verifyUserToken = (req, res, next) => {
-  // carry token req.header
+
+  // token from req.header
   let token = req.headers.authorization;
   //console.log('Token ',token);
 
   if (!token)
+    // no token
     return res.status(401).send("Access Denied / Unauthorized request");
 
   try {
@@ -28,7 +30,9 @@ const verifyUserToken = (req, res, next) => {
     let verifiedUser = jwt.verify(token, config.TOKEN_SECRET); // config.TOKEN_SECRET => 'secretKey'
 
     // if fail
-    if (!verifiedUser) return res.status(401).send("Unauthorized request");
+    if (!verifiedUser) {
+      return res.status(401).send("Unauthorized request")
+    };
 
     // if pass req.user payload
     req.user = verifiedUser; // user_id

@@ -8,7 +8,7 @@ var logger = require("morgan");
 // auth middleware import
 var auth = require("./middleware/auth");
 
-// mongoDB connection
+// mongoose import
 var mongoose = require("mongoose");
 
 // db connection string
@@ -54,10 +54,8 @@ mongoose
 app.use("/", indexRouter);
 app.use("/api/todos", todoRouter);
 app.use("/api/users", userRouter);
-
-// auth checking with auth middleware
-app.use("/api/movies", movieRouter);
-app.use("/api/reviews", reviewRouter);
+app.use("/api/movies", auth.verifyUserToken, movieRouter);
+app.use("/api/reviews", auth.verifyUserToken, reviewRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -44,16 +44,16 @@
 // }
 
 
-
-
-
+// mongoose import
+let mongoose = require("mongoose");
 
 // review model import
 let Review = require("./../model/review");
+let Movie = require("./../model/movie");
 
 // get all reviews
 async function getAllReview() {
-    return Review.find().populate("movie");
+    return Review.find();
 }
 
 // get review by id
@@ -63,6 +63,7 @@ async function getReviewByID(id) {
 
 // get review by movie id
 async function getReviewByMovieID(id) {
+    // return Review.find({movie: id}).populate("movie");
     return Review.find({movie: id}).populate("movie");
 }
 
@@ -70,9 +71,9 @@ async function getReviewByMovieID(id) {
 async function createReview(review) {
 
     let newReview = new Review({
-        movie:review.movie,
-        rating:review.rating,
-        review:review.review,
+        movie: mongoose.Types.ObjectId(review.movie),
+        rating: review.rating,
+        review: review.review,
     });
     await newReview.save();
     return newReview.populate("movie")
@@ -80,14 +81,20 @@ async function createReview(review) {
 
 // update review by id
 async function updateReviewByID(id, review) {
+
     review.movie = mongoose.Types.ObjectId(review.movie);
-    let updateReview = await Review.findByIdAndUpdate(id, review);
-    return updateReview.populate("movie");
+    console.log('Review Id ', id, ' Review ', review);
+    const updatedReview = await Review.findByIdAndUpdate(id, review, {new: true});
+    return updatedReview.populate("movie");
+
+    // review.movie = mongoose.Types.ObjectId(review.movie);
+    // let updateReview = await Review.findByIdAndUpdate(id, review);
+    // return updateReview.populate("movie");
 }
 
 // delete review by id
 async function deleteReviewByID(id) {
-    return Review.findByIdAndDelete(id);
+    return Review.findByIdAndDelete(id).populate("movie");
 }
 
 
