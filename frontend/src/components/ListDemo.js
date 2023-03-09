@@ -1,48 +1,65 @@
-// list
-let people = [
-  {
-    id: 1,
-    name: "Swam Htet",
-    age: 32,
-  },
-  {
-    id: 2,
-    name: "Hla Hla",
-    age: 21,
-  },
-  {
-    id: 3,
-    name: "Mya Mya",
-    age: 20,
-  },
-];
+import * as PropTypes from "prop-types";
 
-// refactoring the parameter function for map
-function PersonList(para) {
-  // click handler and event binding
-  let clickHandle = () => {
-    console.log(para);
-  };
-
-  return (
-    <li key={para.id}>
-      <p>
-        Person Name : {para.name}
-        Person age : {para.age}
-      </p>
-      <button className={"btn btn-outline-warning"} onClick={clickHandle}>
-        CLick Me
-      </button>
-    </li>
-  );
+function ToDo({todo}) {
+    let btnClickHandler = () => {
+        console.log('Btn Click ', todo);
+    };
+    return <div>
+        <h4 className={"m-2"}>{todo.title}</h4>
+        <button className={"btn btn-outline-warning"}
+                onClick={btnClickHandler}
+        > Click Me
+        </button>
+    </div>;
 }
 
-// list demo
+ToDo.propTypes = {todo: PropTypes.any};
+
 export default function ListDemo() {
-  return (
-    <div>
-      <h1>Person List</h1>
-      <ul>{people.map((p) => PersonList(p))}</ul>
-    </div>
-  );
+    let todos = [
+        {
+            id: 1,
+            title: 'Todo 1',
+        },
+        {
+            id: 2,
+            title: 'Todo 2',
+        },
+    ];
+    return (<div>
+        <h2>To Do List</h2>
+        {
+            todos.map(todo =>
+                <ToDo key={todo.id}
+                      todo={todo}/>)
+        }
+    </div>)
+}
+
+export function ListDemoOwn() {
+    let todos = [
+        {
+            id: 1,
+            title: 'Todo 1',
+        },
+        {
+            id: 2,
+            title: 'Todo 2',
+        },
+    ];
+    return (<div>
+        <h2>List Demo</h2>
+        {
+            todos.map(todo => {
+                function clickHandler(){
+                    console.log(`Todo ${todo.id} is click.`);
+                }
+                return (<div key={todo.id}>
+                    <h3>{todo.title}</h3>
+                    <button className={"btn btn-outline-danger"} onClick={clickHandler}>Click {todo.id}</button>
+                </div>)
+
+            })
+        }
+    </div>)
 }
