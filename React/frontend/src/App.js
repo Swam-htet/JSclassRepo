@@ -79,17 +79,20 @@ function App() {
 
             {/*<TodoListEventDemo/>*/}
 
-            <Tab headers={headers}>
-                <div className={'child bg-success'}>
-                    <h1>Tab One</h1>
-                </div>
-                <div className={'child bg-danger'}>
-                    <h1>Tab Two</h1>
-                </div>
-                <div className={'child bg-secondary'}>
-                    <h1>Tab Three</h1>
-                </div>
-            </Tab>
+            {/*<Tab headers={headers}>*/}
+            {/*    <div className={'child bg-success'}>*/}
+            {/*        <h1>Tab One</h1>*/}
+            {/*    </div>*/}
+            {/*    <div className={'child bg-danger'}>*/}
+            {/*        <h1>Tab Two</h1>*/}
+            {/*    </div>*/}
+            {/*    <div className={'child bg-secondary'}>*/}
+            {/*        <h1>Tab Three</h1>*/}
+            {/*    </div>*/}
+            {/*</Tab>*/}
+
+        {/*    re learning the React */}
+            <EventDemo
 
 
         </div>
